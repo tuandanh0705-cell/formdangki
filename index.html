@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1a0b2e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no">
 <title>INPRO – Phần mềm AI giúp nhà bán hàng tăng trưởng lợi nhuận | Base.vn Clone</title>
 <meta name="description" content="INPRO - Phần mềm AI quản trị bán hàng đa kênh, tối ưu dòng tiền và tăng trưởng lợi nhuận. Hợp nhất dữ liệu online và offline, tự động hóa vận hành chuỗi bán lẻ.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,13 +20,17 @@
    ============================================================ */
 :root {
   --font-main: 'Mulish', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --primary-purple: #9333ea;
-  --purple-dark: #6b21a8;
-  --purple-tint: #f3e8ff;
-  --navy-dark: #18233d;
+  --primary-purple: #9333ea;   /* Brand Primary Purple */
+  --purple-brand: #7e22ce;     /* Brand Solid Purple */
+  --purple-midnight: #1a0b2e;  /* Deep Midnight Purple Base */
+  --purple-card-bg: #261042;   /* Deep Purple Card Container */
+  --purple-banner: #240e3f;    /* Deep Purple Section */
+  --purple-footer: #120624;    /* Deepest Midnight Footer */
+  --purple-tint: #f3e8ff;      /* Brand Light Purple */
+  --navy-dark: #18233d;        /* Brand Navy */
   --navy-deep: #0f172a;
-  --base-blue: #1e3a8a;
-  --base-blue-card: #2563eb;
+  --base-blue: #7e22ce;
+  --base-blue-card: #9333ea;
   --base-orange: #ffb303;
   --orange-grad: linear-gradient(135deg, #ff9800 0%, #ff6d00 100%);
   --orange-grad-h: linear-gradient(135deg, #ffa726 0%, #f57c00 100%);
@@ -51,11 +59,32 @@ img { max-width: 100%; height: auto; display: block; }
 .wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
 
 /* TYPOGRAPHY */
-h1, h2, h3, h4 { font-weight: 800; line-height: 1.3; }
+h1, h2, h3, h4 { font-weight: 800; line-height: 1.3; text-wrap: balance; }
+p, li { text-wrap: pretty; }
+.persona-title-accent { display: block; }
 .text-orange { color: var(--base-orange) !important; }
 .text-purple { color: var(--primary-purple) !important; }
 
-/* BUTTONS */
+/* Section headings: cân bằng dòng, tránh từ lẻ loi ở dòng cuối */
+.pain-title-main, .pain-title-sub, .zigzag-header-main, .persona-head-title,
+.why-section-title, .testi-header-main, .leader-head-title, .sol-banner-title,
+.hero-title-main, .hero-title-sub, .form-card-title, .form-card-subtitle {
+  text-wrap: balance;
+  margin-left: auto;
+  margin-right: auto;
+}
+.pain-title-main, .zigzag-header-main, .persona-head-title,
+.why-section-title, .testi-header-main, .leader-head-title { max-width: 920px; }
+.hero-title-main, .hero-title-sub, .sol-banner-title { margin-left: 0; margin-right: 0; }
+
+/* BUTTONS & TOUCH INTERACTION */
+button, a, input, select, label {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.btn-orange-pill:active, .header-btn:active, .m-cta-btn:active, .m-call-btn:active, .btn-testi-cta:active {
+  transform: scale(0.97);
+}
 .btn-orange-pill {
   display: inline-flex;
   align-items: center;
@@ -109,9 +138,8 @@ header.site-header {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  background: rgba(24, 35, 61, 0.96);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--purple-midnight);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   transition: all .3s ease;
 }
 .header-wrap {
@@ -160,7 +188,7 @@ header.site-header {
 .section-hero {
   position: relative;
   padding: 110px 0 70px;
-  background: #18233d url('assets/base/hero_bg.jpg') no-repeat center bottom / cover;
+  background: var(--purple-midnight);
   color: #ffffff;
   overflow: hidden;
 }
@@ -208,7 +236,7 @@ header.site-header {
 .hero-slogan {
   font-size: 16.5px;
   font-weight: 600;
-  color: #cbd5e1;
+  color: #f1f5f9;
   margin-bottom: 22px;
 }
 .hero-bullets {
@@ -397,7 +425,7 @@ header.site-header {
   top: 0;
   bottom: 0;
   width: 12px;
-  border-color: #3b82f6;
+  border-color: #9333ea;
   border-style: solid;
   pointer-events: none;
 }
@@ -514,7 +542,7 @@ header.site-header {
    SECTION 3: GIẢI PHÁP CHO DOANH NGHIỆP (OVERVIEW BANNER + 4 ZIGZAG BLOCKS)
    ============================================================ */
 .section-solution-banner {
-  background: linear-gradient(135deg, #18233d 0%, #1e1b4b 50%, #271249 100%);
+  background: var(--purple-banner);
   color: #ffffff;
   padding: 60px 0;
   position: relative;
@@ -535,7 +563,7 @@ header.site-header {
 }
 .sol-banner-desc {
   font-size: 15.5px;
-  color: #cbd5e1;
+  color: #f1f5f9;
   line-height: 1.6;
   margin-bottom: 24px;
 }
@@ -582,7 +610,7 @@ header.site-header {
   box-shadow: var(--sh-card);
 }
 .zigzag-card-title-bar {
-  background: var(--base-blue);
+  background: #7e22ce;
   color: #ffffff;
   padding: 13px 20px;
   font-size: 16px;
@@ -624,7 +652,7 @@ header.site-header {
    PERSONA BREAKDOWN SECTION (95% VƯỢT KỲ VỌNG - PHONE CENTER)
    ============================================================ */
 .section-persona {
-  background: #141f36;
+  background: var(--purple-midnight);
   color: #ffffff;
   padding: 70px 0;
   position: relative;
@@ -636,6 +664,8 @@ header.site-header {
   font-weight: 900;
   text-transform: uppercase;
   margin-bottom: 46px;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 .persona-grid-3col {
   display: grid;
@@ -650,19 +680,21 @@ header.site-header {
   gap: 30px;
 }
 .persona-box {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 20px;
-  border-radius: 12px;
+  background: var(--purple-card-bg);
+  border: 1.5px solid rgba(192, 132, 252, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  padding: 22px 20px;
+  border-radius: 14px;
 }
 .persona-box-title {
-  font-size: 15px;
-  font-weight: 800;
+  font-size: 15.5px;
+  font-weight: 900;
   color: var(--base-orange);
   text-transform: uppercase;
   margin-bottom: 12px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  padding-bottom: 6px;
+  padding-bottom: 8px;
+  letter-spacing: -0.01em;
 }
 .persona-box ul {
   list-style: none;
@@ -674,14 +706,15 @@ header.site-header {
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  font-size: 13.5px;
-  line-height: 1.5;
-  color: #cbd5e1;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #f8fafc;
+  font-weight: 500;
 }
 .persona-box li svg {
-  width: 14px;
-  height: 14px;
-  fill: #60a5fa;
+  width: 15px;
+  height: 15px;
+  fill: #c084fc;
   flex-shrink: 0;
   margin-top: 3px;
 }
@@ -703,7 +736,7 @@ header.site-header {
    ============================================================ */
 .section-why-inpro {
   padding: 80px 0;
-  background: #18233d url('assets/base/curved_bg.jpg') no-repeat center center / cover;
+  background: var(--purple-banner);
   color: #ffffff;
   text-align: center;
 }
@@ -712,6 +745,7 @@ header.site-header {
   font-weight: 900;
   text-transform: uppercase;
   margin-bottom: 46px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 .why-icons-grid {
   display: grid;
@@ -729,11 +763,11 @@ header.site-header {
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border: 1.5px solid rgba(192, 132, 252, 0.5);
   display: grid;
   place-items: center;
   margin-bottom: 16px;
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--purple-card-bg);
   transition: all .25s ease;
 }
 .why-icon-card:hover .why-icon-circle {
@@ -753,8 +787,8 @@ header.site-header {
   margin-bottom: 8px;
 }
 .why-card-text-desc {
-  font-size: 13.5px;
-  color: #cbd5e1;
+  font-size: 14px;
+  color: #f1f5f9;
   line-height: 1.55;
   max-width: 320px;
 }
@@ -855,7 +889,7 @@ header.site-header {
    ============================================================ */
 .section-leadership {
   padding: 70px 0;
-  background: #0f172a;
+  background: var(--purple-midnight);
   color: #ffffff;
 }
 .leader-head-title {
@@ -864,6 +898,8 @@ header.site-header {
   font-weight: 900;
   text-transform: uppercase;
   margin-bottom: 46px;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 .leader-profile-row {
   display: flex;
@@ -872,8 +908,9 @@ header.site-header {
   gap: 40px;
   max-width: 860px;
   margin: 0 auto;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--purple-card-bg);
+  border: 1.5px solid rgba(192, 132, 252, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
   border-radius: 20px;
   padding: 36px 40px;
 }
@@ -882,7 +919,7 @@ header.site-header {
   width: 170px;
   height: 190px;
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
+  background: var(--primary-purple);
   padding: 4px;
   display: flex;
   align-items: center;
@@ -893,7 +930,7 @@ header.site-header {
   width: 100%;
   height: 100%;
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  background: #18233d;
+  background: #1a0b2e;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -925,7 +962,7 @@ header.site-header {
 }
 .leader-bullets li {
   font-size: 14px;
-  color: #cbd5e1;
+  color: #f8fafc;
   line-height: 1.5;
   display: flex;
   align-items: flex-start;
@@ -949,8 +986,8 @@ header.site-header {
    SECTION 7: CORPORATE FOOTER
    ============================================================ */
 footer.corporate-footer {
-  background: #090e17;
-  color: #94a3b8;
+  background: var(--purple-footer);
+  color: #cbd5e1;
   padding: 50px 0 30px;
   font-size: 13.5px;
   line-height: 1.6;
@@ -985,7 +1022,7 @@ footer.corporate-footer {
   padding-top: 20px;
   text-align: center;
   font-size: 12.5px;
-  color: #64748b;
+  color: #c4b5fd;
 }
 
 /* ============================================================
@@ -1033,7 +1070,12 @@ footer.corporate-footer {
    RESPONSIVE DESIGN (TABLET & MOBILE)
    ============================================================ */
 @media (max-width: 1024px) {
-  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 0; }
+  /* Đưa form lên ngay sau phần giới thiệu, mockup thiết bị xuống cuối hero */
+  .hero-left-content { display: contents; }
+  .hero-badge-tag { justify-self: start; }
+  .hero-right-form { order: 1; width: 100%; max-width: 640px; margin: 8px auto 32px; }
+  .hero-mockup-wrapper { order: 2; width: 100%; margin: 0 auto; max-width: 520px; }
   .stats-brackets-grid { grid-template-columns: 1fr; gap: 24px; }
   .pain-grid-layout { grid-template-columns: 1fr; }
   .solution-banner-grid { grid-template-columns: 1fr; }
@@ -1048,17 +1090,148 @@ footer.corporate-footer {
   .footer-cols-grid { grid-template-columns: 1fr; gap: 24px; }
 }
 
+/* ===== MOBILE (iPhone / Android) ===== */
 @media (max-width: 768px) {
+  html { scroll-padding-top: 64px; }
   .wrap { padding: 0 16px; }
+
+  /* Header gọn, nút CTA không bị tràn */
   .header-hotline { display: none; }
-  .section-hero { padding: 90px 0 40px; }
-  .hero-title-main { font-size: 23px; }
-  .hero-title-sub { font-size: 26px; }
-  .why-icons-grid { grid-template-columns: 1fr; }
-  .persona-cta-row { flex-direction: column; width: 100%; }
+  .header-wrap { height: 58px; gap: 10px; }
+  .header-logo img { height: 26px; }
+  .header-btn { padding: 10px 14px; font-size: 12px; white-space: nowrap; box-shadow: 0 3px 10px rgba(255, 109, 0, 0.3); }
+
+  /* Hero */
+  .section-hero { padding: 80px 0 28px; }
+  .hero-badge-tag { font-size: 11px; letter-spacing: .05em; padding: 6px 12px; margin-bottom: 14px; line-height: 1.35; }
+  .hero-title-main { font-size: clamp(22px, 6vw, 30px); }
+  .hero-title-sub { font-size: clamp(22px, 6.4vw, 34px); margin-bottom: 12px; }
+  .hero-slogan { font-size: 14px; margin-bottom: 16px; }
+  .hero-bullets { gap: 10px; margin-bottom: 22px; }
+  .hero-bullets li { font-size: 14.5px; gap: 9px; }
+
+  /* Form: ô nhập 16px để iOS không tự phóng to, vùng chạm >= 46px */
+  .form-card-body { padding: 20px 16px 18px; }
+  .form-card-title { font-size: 18px; }
+  .form-card-subtitle { font-size: 13px; margin-bottom: 16px; }
+  .form-group-item { margin-bottom: 11px; }
+  .form-input-control { font-size: 16px; padding: 12px 14px; min-height: 48px; border-radius: 8px; }
+  .form-select-control { padding-right: 38px; }
+  .form-label-small { font-size: 13.5px; margin-bottom: 8px; }
+  .needs-chips-grid { max-height: none; overflow: visible; padding-right: 0; gap: 8px; margin-bottom: 18px; }
+  .needs-chip { font-size: 14.5px; padding: 11px 12px; min-height: 46px; gap: 10px; border-radius: 8px; }
+  .needs-chip input[type="checkbox"] { width: 20px; height: 20px; flex-shrink: 0; }
+  .btn-form-submit { padding: 15px; min-height: 52px; font-size: 16px; }
+  .form-security-note { font-size: 12px; }
+
+  /* Nút CTA full-width cho dễ bấm */
+  .btn-orange-pill { width: 100%; padding: 14px 18px; font-size: 14.5px; text-align: center; }
+  .btn-outline-pill { width: 100%; padding: 13px 18px; font-size: 14.5px; }
+
+  /* Rào cản (3 số liệu) */
+  .section-barriers { padding: 44px 0 36px; }
+  .stats-brackets-grid { gap: 18px; margin-bottom: 40px; }
+  .stat-bracket-card { padding: 20px 18px; }
+  .stat-num-val { font-size: 44px; margin-bottom: 10px; }
+  .stat-card-title { font-size: 15.5px; }
+  .stat-card-desc { font-size: 14.5px; }
+
+  /* Hệ lụy */
+  .pain-section-head { margin-bottom: 26px; }
+  .pain-title-main { font-size: clamp(18px, 5.4vw, 24px); }
+  .pain-title-sub { font-size: 12.5px; line-height: 1.4; }
+  .pain-items-list { gap: 14px; }
+  .pain-item-row { gap: 12px; }
+  .pain-item-text { font-size: 14.5px; }
+  .pain-grid-layout { gap: 24px; }
+  .down-arrow-guide { margin-top: 28px; }
+
+  /* Banner giải pháp */
+  .section-solution-banner { padding: 40px 0; }
+  .solution-banner-grid { gap: 26px; }
+  .sol-banner-title { font-size: clamp(19px, 5.4vw, 26px); }
+  .sol-banner-desc { font-size: 14.5px; margin-bottom: 20px; }
+
+  /* Zigzag */
+  .section-zigzag { padding: 44px 0 24px; }
+  .zigzag-header-main { font-size: clamp(19px, 5.6vw, 26px); margin-bottom: 30px; }
+  .zigzag-row, .zigzag-row.reverse { gap: 20px; margin-bottom: 40px; }
+  .zigzag-card-title-bar { font-size: 14.5px; padding: 12px 16px; }
+  .zigzag-bullets-list { gap: 12px; margin-bottom: 20px; }
+  .zigzag-bullets-list li { font-size: 14.5px; }
+
+  /* Persona 95% */
+  .section-persona { padding: 44px 0; }
+  .persona-head-title { font-size: clamp(20px, 5.8vw, 28px); margin-bottom: 28px; }
+  .persona-grid-3col { gap: 18px; margin-bottom: 28px; }
+  .persona-col-stack { gap: 16px; }
+  .persona-box { padding: 16px; }
+  .persona-box li { font-size: 14px; }
+  .persona-phone-center img { max-width: 220px; }
+  .persona-cta-row { flex-direction: column; width: 100%; gap: 12px; }
   .persona-cta-row a { width: 100%; }
-  .mobile-sticky-footer { display: flex; }
-  body { padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
+
+  /* Tại sao chọn INPRO */
+  .section-why-inpro { padding: 48px 0; }
+  .why-section-title { font-size: clamp(22px, 6.4vw, 30px); margin-bottom: 30px; }
+  .why-icons-grid { grid-template-columns: 1fr; gap: 26px; margin-bottom: 30px; }
+  .why-card-text-desc { font-size: 14px; }
+
+  /* Phản hồi khách hàng */
+  .section-testimonials { padding: 44px 0 36px; }
+  .testi-header-main { font-size: clamp(19px, 5.6vw, 26px); margin-bottom: 28px; }
+  .testi-grid-2x2 { gap: 16px; }
+  .testi-card-blue { padding: 18px 16px; }
+  .testi-quote-content { font-size: 14.5px; }
+  .testi-footer-row { flex-wrap: wrap; gap: 10px; }
+  .btn-testi-cta { width: auto; padding: 9px 18px; }
+
+  /* Lãnh đạo */
+  .section-leadership { padding: 44px 0; }
+  .leader-head-title { margin-bottom: 28px; }
+  .leader-profile-row { padding: 24px 18px; gap: 22px; }
+  .hexagon-wrapper { width: 140px; height: 156px; }
+  .leader-bio-info h3 { font-size: 20px; }
+  .leader-bullets li { font-size: 14.5px; }
+
+  /* Form cuối trang + footer */
+  .section-bottom-form { padding: 44px 0; }
+  footer.corporate-footer { padding: 36px 0 24px; }
+  .footer-cols-grid { gap: 22px; margin-bottom: 26px; }
+
+  /* Thanh hành động cố định phía dưới (an toàn với tai thỏ / thanh home iPhone) */
+  .mobile-sticky-footer { display: flex; transition: transform .25s ease; }
+  .mobile-sticky-footer.is-hidden { transform: translateY(110%); }
+  .m-call-btn, .m-cta-btn { min-height: 48px; }
+  .m-call-btn { width: 48px; height: 48px; }
+  body { padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
+}
+
+/* Điện thoại nhỏ (iPhone SE/mini, Android 360px) */
+@media (max-width: 400px) {
+  .wrap { padding: 0 14px; }
+  .header-logo img { height: 24px; }
+  .header-btn { padding: 9px 12px; font-size: 11.5px; }
+  .hero-badge-tag { font-size: 10.5px; letter-spacing: .04em; }
+  .form-card-body { padding: 18px 14px 16px; }
+  .stat-num-val { font-size: 40px; }
+  .hero-bullets li { font-size: 14px; }
+}
+@media (max-width: 340px) {
+  .header-btn { font-size: 11px; padding: 9px 10px; }
+  .hero-title-sub { font-size: 21px; }
+}
+
+/* Điện thoại xoay ngang: không để sticky bar chiếm quá nhiều chỗ */
+@media (max-width: 900px) and (orientation: landscape) and (max-height: 480px) {
+  .section-hero { padding-top: 72px; }
+  .mobile-sticky-footer { display: none; }
+  body { padding-bottom: 0; }
+}
+
+/* Người dùng bật giảm chuyển động */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
 </style>
 </head>
@@ -1091,7 +1264,7 @@ footer.corporate-footer {
       <!-- Left Column: Value Prop & Cluster Devices Mockup -->
       <div class="hero-left-content">
         <div class="hero-badge-tag">Hệ thống AI Quản trị Bán hàng Đa kênh</div>
-        <h1 class="hero-title-main">PHẦN MỀM AI GIÚP NHÀ BÁN HÀNG</h1>
+        <h1 class="hero-title-main">PHẦN&nbsp;MỀM AI GIÚP NHÀ&nbsp;BÁN&nbsp;HÀNG</h1>
         <div class="hero-title-sub">TĂNG TRƯỞNG LỢI NHUẬN</div>
         <p class="hero-slogan">Tăng lời, vững lãi · Earn More. Keep More. Increase Profit.</p>
 
@@ -1234,7 +1407,7 @@ footer.corporate-footer {
 
     <!-- Pain points list & Stressed CEO (Exact Base.vn layout) -->
     <div class="pain-section-head">
-      <h2 class="pain-title-main">VÀ NHỮNG HỆ LỤY "ĐAU ĐỚN" LẠI DO CHÍNH SẾP VÀ DOANH NGHIỆP PHẢI GÁNH CHỊU</h2>
+      <h2 class="pain-title-main">VÀ NHỮNG HỆ LỤY "ĐAU&nbsp;ĐỚN" LẠI DO CHÍNH&nbsp;SẾP VÀ DOANH&nbsp;NGHIỆP PHẢI GÁNH&nbsp;CHỊU</h2>
       <p class="pain-title-sub">DOANH NGHIỆP ĐANG ĐÁNH MẤT LỢI NHUẬN TỪ NHỮNG ĐIỂM NGHẼN TRONG VẬN HÀNH</p>
     </div>
 
@@ -1287,7 +1460,7 @@ footer.corporate-footer {
   <div class="wrap">
     <div class="solution-banner-grid">
       <div>
-        <h2 class="sol-banner-title">INPRO – HỆ THỐNG QUẢN TRỊ THÔNG MINH, TỐI ƯU DÒNG TIỀN VÀ GIA TĂNG LỢI NHUẬN CHÍNH LÀ GIẢI PHÁP TỐI ƯU CHO <span class="text-orange">DOANH NGHIỆP CỦA BẠN</span></h2>
+        <h2 class="sol-banner-title">INPRO – HỆ THỐNG QUẢN TRỊ THÔNG MINH, TỐI ƯU DÒNG&nbsp;TIỀN VÀ GIA&nbsp;TĂNG LỢI&nbsp;NHUẬN CHÍNH LÀ GIẢI&nbsp;PHÁP TỐI&nbsp;ƯU CHO <span class="text-orange">DOANH&nbsp;NGHIỆP CỦA&nbsp;BẠN</span></h2>
         <p class="sol-banner-desc">Được xây dựng từ hệ sinh thái bán lẻ NoneLab với doanh thu 600–700 tỷ đồng/năm, INPRO giải quyết triệt để các bài toán vận hành thực chiến của nhà bán hàng đa kênh.</p>
         <a href="#register-hero" class="btn-orange-pill">NHẬN DEMO PHẦN MỀM NGAY ▶</a>
       </div>
@@ -1303,7 +1476,7 @@ footer.corporate-footer {
      ============================================================ -->
 <section class="section-zigzag" id="solutions">
   <div class="wrap">
-    <h2 class="zigzag-header-main">INPRO GIÚP DOANH NGHIỆP GIẢI QUYẾT NHỮNG BÀI TOÁN QUAN TRỌNG NÀO?</h2>
+    <h2 class="zigzag-header-main">INPRO GIÚP DOANH&nbsp;NGHIỆP GIẢI&nbsp;QUYẾT NHỮNG BÀI&nbsp;TOÁN QUAN&nbsp;TRỌNG&nbsp;NÀO?</h2>
 
     <!-- ZIGZAG BLOCK 1: Quản lý bán hàng đa kênh -->
     <div class="zigzag-row">
@@ -1424,7 +1597,7 @@ footer.corporate-footer {
      ============================================================ -->
 <section class="section-persona">
   <div class="wrap">
-    <h2 class="persona-head-title">95% DOANH NGHIỆP ĐÁNH GIÁ GIẢI PHÁP CỦA INPRO <span class="text-orange">VƯỢT TRÊN KỲ VỌNG</span></h2>
+    <h2 class="persona-head-title">95% DOANH&nbsp;NGHIỆP ĐÁNH&nbsp;GIÁ GIẢI&nbsp;PHÁP CỦA&nbsp;INPRO <span class="text-orange persona-title-accent">VƯỢT&nbsp;TRÊN KỲ&nbsp;VỌNG</span></h2>
 
     <div class="persona-grid-3col">
       <!-- Left Column: CEO & Team Lead -->
@@ -1579,7 +1752,7 @@ footer.corporate-footer {
      ============================================================ -->
 <section class="section-testimonials">
   <div class="wrap">
-    <h2 class="testi-header-main">PHẢN HỒI TỪ CÁC THƯƠNG HIỆU ĐÃ TRỰC TIẾP ÁP DỤNG PHẦN MỀM</h2>
+    <h2 class="testi-header-main">PHẢN HỒI TỪ CÁC THƯƠNG&nbsp;HIỆU ĐÃ TRỰC&nbsp;TIẾP ÁP&nbsp;DỤNG PHẦN&nbsp;MỀM</h2>
 
     <div class="testi-grid-2x2">
       <!-- 1. Nerman -->
@@ -1815,7 +1988,7 @@ footer.corporate-footer {
       <div>
         <div class="footer-title">Thông tin liên hệ</div>
         <p style="margin-bottom:6px"><b>Hotline:</b> <a href="tel:0869634683" style="color:#ffffff">0869 634 683</a></p>
-        <p style="margin-bottom:6px"><b>Zalo:</b> <a href="https://zalo.me/869634683" target="_blank" rel="noopener" style="color:#60a5fa">0869 634 683</a></p>
+        <p style="margin-bottom:6px"><b>Zalo:</b> <a href="https://zalo.me/869634683" target="_blank" rel="noopener" style="color:#c084fc">0869 634 683</a></p>
         <p style="margin-bottom:6px"><b>Website:</b> <a href="https://inpro.vn" target="_blank" rel="noopener" style="color:#c084fc">https://inpro.vn</a></p>
         <p style="font-size:12px;margin-top:10px;color:#64748b">Trụ sở Hà Nội · VP TP. Hồ Chí Minh · VP Đà Nẵng</p>
       </div>
@@ -1843,6 +2016,27 @@ footer.corporate-footer {
 <script>
 // Apps Script URL kết nối trực tiếp đến Google Sheet
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbw1DxceJORyQEXRUeEmfLitqnfjZvl4hduDqFFYkCsZpCWK12kkXRBBpVWdrQiYJWq4kg/exec';
+
+// Tối ưu mobile: lazy-load ảnh ngoài màn hình đầu để tải nhanh hơn trên 4G
+document.querySelectorAll('img').forEach(img => {
+  if (!img.closest('header, .section-hero')) {
+    img.loading = 'lazy';
+    img.decoding = 'async';
+  }
+});
+
+// Thanh CTA cố định: tự ẩn ngay khi form đăng ký chạm vào màn hình để không che form
+(function () {
+  const bar = document.querySelector('.mobile-sticky-footer');
+  const forms = document.querySelectorAll('.form-card-base');
+  if (!bar || !forms.length || !('IntersectionObserver' in window)) return;
+  const visible = new Set();
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => en.isIntersecting ? visible.add(en.target) : visible.delete(en.target));
+    bar.classList.toggle('is-hidden', visible.size > 0);
+  }, { threshold: [0, 0.05, 0.2] });
+  forms.forEach(f => io.observe(f));
+})();
 
 // Tương tác checkbox chip
 document.querySelectorAll('.needs-chip input[type="checkbox"]').forEach(chk => {
