@@ -1,0 +1,1928 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>INPRO – Phần mềm AI giúp nhà bán hàng tăng trưởng lợi nhuận | Base.vn Clone</title>
+<meta name="description" content="INPRO - Phần mềm AI quản trị bán hàng đa kênh, tối ưu dòng tiền và tăng trưởng lợi nhuận. Hợp nhất dữ liệu online và offline, tự động hóa vận hành chuỗi bán lẻ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700;1,800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="favicon.png">
+
+<style>
+/* ============================================================
+   DESIGN TOKENS & BASE.VN CLONE SYSTEM (INPRO BRAND ADAPTATION)
+   ============================================================ */
+:root {
+  --font-main: 'Mulish', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --primary-purple: #9333ea;
+  --purple-dark: #6b21a8;
+  --purple-tint: #f3e8ff;
+  --navy-dark: #18233d;
+  --navy-deep: #0f172a;
+  --base-blue: #1e3a8a;
+  --base-blue-card: #2563eb;
+  --base-orange: #ffb303;
+  --orange-grad: linear-gradient(135deg, #ff9800 0%, #ff6d00 100%);
+  --orange-grad-h: linear-gradient(135deg, #ffa726 0%, #f57c00 100%);
+  --grey-bg: #f8fafc;
+  --border-line: #e2e8f0;
+  --text-dark: #18233d;
+  --text-mut: #64748b;
+  --text-light: #94a3b8;
+  --danger-red: #ef4444;
+  --sh-card: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --sh-form: 0 15px 40px rgba(0, 0, 0, 0.16);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 70px; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-main);
+  color: var(--text-dark);
+  background: #ffffff;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; height: auto; display: block; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+
+/* TYPOGRAPHY */
+h1, h2, h3, h4 { font-weight: 800; line-height: 1.3; }
+.text-orange { color: var(--base-orange) !important; }
+.text-purple { color: var(--primary-purple) !important; }
+
+/* BUTTONS */
+.btn-orange-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--orange-grad);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 15px;
+  padding: 13px 30px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  transition: all .25s ease;
+  box-shadow: 0 6px 18px rgba(255, 109, 0, 0.35);
+  font-family: inherit;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+}
+.btn-orange-pill:hover {
+  background: var(--orange-grad-h);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(255, 109, 0, 0.45);
+}
+.btn-outline-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: transparent;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 15px;
+  padding: 12px 28px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all .25s ease;
+  font-family: inherit;
+  text-transform: uppercase;
+}
+.btn-outline-pill:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #ffffff;
+}
+
+/* ============================================================
+   TOP FIXED HEADER
+   ============================================================ */
+header.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(24, 35, 61, 0.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all .3s ease;
+}
+.header-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+.header-logo img {
+  height: 32px;
+  width: auto;
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.header-hotline {
+  color: #ffffff;
+  font-size: 14.5px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.header-hotline svg { width: 16px; height: 16px; fill: var(--base-orange); }
+.header-btn {
+  background: var(--orange-grad);
+  color: #ffffff;
+  padding: 9px 20px;
+  border-radius: 999px;
+  font-size: 13.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  transition: .2s;
+  box-shadow: 0 4px 12px rgba(255, 109, 0, 0.3);
+}
+.header-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 109, 0, 0.45);
+}
+
+/* ============================================================
+   SECTION 1: HERO BANNER WITH DEVICES & FORM (BASE.VN TWIN)
+   ============================================================ */
+.section-hero {
+  position: relative;
+  padding: 110px 0 70px;
+  background: #18233d url('assets/base/hero_bg.jpg') no-repeat center bottom / cover;
+  color: #ffffff;
+  overflow: hidden;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.18fr 0.92fr;
+  gap: 40px;
+  align-items: flex-start;
+  position: relative;
+  z-index: 2;
+}
+
+/* Left Hero Column */
+.hero-badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #f3e8ff;
+  margin-bottom: 16px;
+}
+.hero-title-main {
+  font-size: clamp(26px, 2.9vw, 38px);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+.hero-title-sub {
+  font-size: clamp(26px, 3.2vw, 42px);
+  font-weight: 900;
+  color: var(--base-orange);
+  line-height: 1.25;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+.hero-slogan {
+  font-size: 16.5px;
+  font-weight: 600;
+  color: #cbd5e1;
+  margin-bottom: 22px;
+}
+.hero-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.hero-bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15.5px;
+  line-height: 1.5;
+  color: #f8fafc;
+}
+.hero-bullets li img {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Hero Devices Cluster Mockup (Laptop, Tablet, Phone) */
+.hero-mockup-wrapper {
+  margin-top: 10px;
+  max-width: 580px;
+}
+.hero-mockup-wrapper img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.35));
+}
+
+/* Right Hero Column: Form Card */
+.form-card-base {
+  background: #ffffff;
+  border: 1px solid var(--base-orange);
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  position: relative;
+}
+.form-card-top-bar {
+  height: 9px;
+  background: var(--base-orange);
+  width: 100%;
+}
+.form-card-body {
+  padding: 26px 26px 22px;
+}
+.form-card-title {
+  text-align: center;
+  font-size: 21px;
+  font-weight: 900;
+  color: var(--navy-dark);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+.form-card-subtitle {
+  text-align: center;
+  font-size: 13.5px;
+  color: var(--text-mut);
+  margin-bottom: 20px;
+}
+.form-group-item {
+  margin-bottom: 12px;
+}
+.form-input-control {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--navy-dark);
+  outline: none;
+  transition: all .2s ease;
+}
+.form-input-control:focus {
+  border-color: var(--primary-purple);
+  box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.15);
+}
+.form-select-control {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 9l6 6 6-6'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 14px;
+  cursor: pointer;
+}
+.form-label-small {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--navy-dark);
+  margin-bottom: 5px;
+}
+.needs-chips-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 5px;
+  max-height: 140px;
+  overflow-y: auto;
+  padding-right: 4px;
+  margin-bottom: 14px;
+}
+.needs-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background: #f8fafc;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--navy-dark);
+  cursor: pointer;
+  transition: .15s;
+}
+.needs-chip:hover { border-color: var(--primary-purple); background: var(--purple-tint); }
+.needs-chip input[type="checkbox"] { accent-color: var(--primary-purple); width: 14px; height: 14px; }
+.needs-chip.checked { border-color: var(--primary-purple); background: var(--purple-tint); color: var(--primary-purple); }
+
+.btn-form-submit {
+  width: 100%;
+  padding: 13px;
+  font-size: 15.5px;
+  font-weight: 900;
+  border-radius: 8px;
+}
+.form-security-note {
+  text-align: center;
+  font-size: 11.5px;
+  color: #94a3b8;
+  margin-top: 10px;
+}
+
+/* Success state */
+.form-success-box {
+  display: none;
+  text-align: center;
+  padding: 30px 10px;
+}
+.form-success-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #dcfce7;
+  color: #16a34a;
+  display: grid;
+  place-items: center;
+  font-size: 28px;
+  margin: 0 auto 14px;
+}
+
+/* ============================================================
+   SECTION 2: RÀO CẢN CỦA DOANH NGHIỆP (3 STATS WITH BRACKETS)
+   ============================================================ */
+.section-barriers {
+  padding: 70px 0 60px;
+  background: #ffffff;
+}
+.stats-brackets-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 60px;
+}
+.stat-bracket-card {
+  position: relative;
+  padding: 24px 22px;
+  text-align: center;
+  background: #ffffff;
+}
+/* Base.vn Bracket Border Styling */
+.stat-bracket-card::before,
+.stat-bracket-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  border-color: #3b82f6;
+  border-style: solid;
+  pointer-events: none;
+}
+.stat-bracket-card::before {
+  left: 0;
+  border-width: 1.5px 0 1.5px 1.5px;
+  border-radius: 6px 0 0 6px;
+}
+.stat-bracket-card::after {
+  right: 0;
+  border-width: 1.5px 1.5px 1.5px 0;
+  border-radius: 0 6px 6px 0;
+}
+.stat-num-val {
+  font-size: 52px;
+  font-weight: 900;
+  color: var(--base-blue);
+  font-style: italic;
+  line-height: 1;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+.stat-card-title {
+  font-size: 16.5px;
+  font-weight: 800;
+  color: var(--navy-dark);
+  font-style: italic;
+  margin-bottom: 10px;
+  line-height: 1.35;
+}
+.stat-card-desc {
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* Pain Points & Stressed Manager Row */
+.pain-section-head {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.pain-title-main {
+  font-size: clamp(20px, 2.3vw, 27px);
+  font-weight: 900;
+  color: var(--base-blue);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+.pain-title-sub {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--danger-red);
+  text-transform: uppercase;
+}
+.pain-grid-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 36px;
+  align-items: center;
+}
+.pain-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.pain-item-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.pain-item-row img {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.pain-item-text {
+  font-size: 14.5px;
+  color: #334155;
+  line-height: 1.6;
+}
+.pain-item-text b {
+  color: var(--navy-dark);
+}
+.pain-image-wrapper img {
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.12));
+}
+
+.down-arrow-guide {
+  text-align: center;
+  margin: 40px 0 0;
+}
+.down-arrow-guide svg {
+  width: 32px;
+  height: 32px;
+  fill: none;
+  stroke: var(--base-blue);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: bounceDown 2s infinite;
+}
+@keyframes bounceDown {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(8px); }
+  60% { transform: translateY(4px); }
+}
+
+/* ============================================================
+   SECTION 3: GIẢI PHÁP CHO DOANH NGHIỆP (OVERVIEW BANNER + 4 ZIGZAG BLOCKS)
+   ============================================================ */
+.section-solution-banner {
+  background: linear-gradient(135deg, #18233d 0%, #1e1b4b 50%, #271249 100%);
+  color: #ffffff;
+  padding: 60px 0;
+  position: relative;
+}
+.solution-banner-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.sol-banner-title {
+  font-size: clamp(22px, 2.4vw, 32px);
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.3;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+.sol-banner-desc {
+  font-size: 15.5px;
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+.solution-mockup-collage img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+/* 4 Zigzag Alternating Blocks */
+.section-zigzag {
+  padding: 70px 0 60px;
+  background: #ffffff;
+}
+.zigzag-header-main {
+  text-align: center;
+  font-size: clamp(22px, 2.5vw, 30px);
+  font-weight: 900;
+  color: var(--base-blue);
+  text-transform: uppercase;
+  margin-bottom: 50px;
+  letter-spacing: -0.01em;
+}
+.zigzag-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 44px;
+  align-items: center;
+  margin-bottom: 60px;
+}
+.zigzag-row.reverse {
+  direction: rtl;
+}
+.zigzag-row.reverse > * {
+  direction: ltr;
+}
+
+/* Zigzag Left/Right Card with Blue Header */
+.zigzag-card {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--sh-card);
+}
+.zigzag-card-title-bar {
+  background: var(--base-blue);
+  color: #ffffff;
+  padding: 13px 20px;
+  font-size: 16px;
+  font-weight: 800;
+}
+.zigzag-card-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Zigzag Text Content */
+.zigzag-bullets-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.zigzag-bullets-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: #334155;
+}
+.zigzag-bullets-list li img {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.zigzag-bullets-list li b {
+  color: var(--navy-dark);
+}
+
+/* ============================================================
+   PERSONA BREAKDOWN SECTION (95% VƯỢT KỲ VỌNG - PHONE CENTER)
+   ============================================================ */
+.section-persona {
+  background: #141f36;
+  color: #ffffff;
+  padding: 70px 0;
+  position: relative;
+  overflow: hidden;
+}
+.persona-head-title {
+  text-align: center;
+  font-size: clamp(22px, 2.5vw, 32px);
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 46px;
+}
+.persona-grid-3col {
+  display: grid;
+  grid-template-columns: 1fr 0.9fr 1fr;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.persona-col-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.persona-box {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 12px;
+}
+.persona-box-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--base-orange);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding-bottom: 6px;
+}
+.persona-box ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.persona-box li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #cbd5e1;
+}
+.persona-box li svg {
+  width: 14px;
+  height: 14px;
+  fill: #60a5fa;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.persona-phone-center img {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  filter: drop-shadow(0 15px 35px rgba(0,0,0,0.5));
+}
+.persona-cta-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* ============================================================
+   SECTION 4: TẠI SAO NÊN LỰA CHỌN INPRO? (6 CIRCULAR ICONS)
+   ============================================================ */
+.section-why-inpro {
+  padding: 80px 0;
+  background: #18233d url('assets/base/curved_bg.jpg') no-repeat center center / cover;
+  color: #ffffff;
+  text-align: center;
+}
+.why-section-title {
+  font-size: clamp(24px, 2.8vw, 36px);
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 46px;
+}
+.why-icons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px 26px;
+  margin-bottom: 46px;
+  text-align: center;
+}
+.why-icon-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.why-icon-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  display: grid;
+  place-items: center;
+  margin-bottom: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  transition: all .25s ease;
+}
+.why-icon-card:hover .why-icon-circle {
+  border-color: var(--base-orange);
+  background: rgba(255, 179, 3, 0.2);
+  transform: scale(1.08);
+}
+.why-icon-circle img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+.why-card-text-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+.why-card-text-desc {
+  font-size: 13.5px;
+  color: #cbd5e1;
+  line-height: 1.55;
+  max-width: 320px;
+}
+
+/* ============================================================
+   TESTIMONIALS: PHẢN HỒI TỪ CÁC THƯƠNG HIỆU LỚN
+   ============================================================ */
+.section-testimonials {
+  padding: 70px 0 60px;
+  background: #ffffff;
+}
+.testi-header-main {
+  text-align: center;
+  font-size: clamp(22px, 2.5vw, 30px);
+  font-weight: 900;
+  color: var(--base-blue);
+  text-transform: uppercase;
+  margin-bottom: 44px;
+}
+.testi-grid-2x2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+  margin-bottom: 30px;
+}
+.testi-card-blue {
+  background: #ffffff;
+  border: 2px solid var(--base-blue-card);
+  border-radius: 12px;
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.testi-author-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.testi-author-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.testi-author-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.testi-author-info h4 {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--base-blue);
+}
+.testi-author-info p {
+  font-size: 12.5px;
+  color: var(--text-mut);
+}
+.testi-quote-content {
+  font-size: 14px;
+  color: #334155;
+  line-height: 1.6;
+  margin-bottom: 18px;
+  flex: 1;
+}
+.testi-footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 14px;
+}
+.testi-domain-tag {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--base-blue);
+}
+.btn-testi-cta {
+  background: var(--orange-grad);
+  color: #ffffff;
+  padding: 7px 16px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   LEADERSHIP SECTION: ĐỘI NGŨ LÃNH ĐẠO (HEXAGON FRAME)
+   ============================================================ */
+.section-leadership {
+  padding: 70px 0;
+  background: #0f172a;
+  color: #ffffff;
+}
+.leader-head-title {
+  text-align: center;
+  font-size: clamp(22px, 2.6vw, 32px);
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 46px;
+}
+.leader-profile-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  max-width: 860px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 36px 40px;
+}
+/* Hexagon Frame */
+.hexagon-wrapper {
+  width: 170px;
+  height: 190px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.hexagon-inner {
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: #18233d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hexagon-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.leader-bio-info h3 {
+  font-size: 22px;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+.leader-role-tag {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--base-orange);
+  margin-bottom: 14px;
+  display: block;
+}
+.leader-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.leader-bullets li {
+  font-size: 14px;
+  color: #cbd5e1;
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.leader-bullets li span.star { color: var(--base-orange); font-size: 16px; }
+
+/* ============================================================
+   SECTION 6: BOTTOM REGISTRATION FORM
+   ============================================================ */
+.section-bottom-form {
+  padding: 70px 0;
+  background: #f1f5f9;
+}
+.bottom-form-container {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   SECTION 7: CORPORATE FOOTER
+   ============================================================ */
+footer.corporate-footer {
+  background: #090e17;
+  color: #94a3b8;
+  padding: 50px 0 30px;
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+.footer-cols-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 36px;
+  margin-bottom: 36px;
+}
+.footer-logo img {
+  height: 30px;
+  width: auto;
+  margin-bottom: 14px;
+}
+.footer-title {
+  color: #ffffff;
+  font-size: 14.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.footer-links a:hover { color: #ffffff; }
+.footer-bottom-copy {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+  text-align: center;
+  font-size: 12.5px;
+  color: #64748b;
+}
+
+/* ============================================================
+   MOBILE STICKY ACTION BAR
+   ============================================================ */
+.mobile-sticky-footer {
+  display: none;
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 99;
+  padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+  background: rgba(255, 255, 255, 0.98);
+  border-top: 1px solid #e2e8f0;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
+  gap: 10px;
+  align-items: center;
+}
+.m-call-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 8px;
+  background: var(--purple-tint);
+  color: var(--primary-purple);
+  border: 1.5px solid #d8b4fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.m-cta-btn {
+  flex: 1;
+  min-height: 46px;
+  border-radius: 8px;
+  background: var(--orange-grad);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 14.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN (TABLET & MOBILE)
+   ============================================================ */
+@media (max-width: 1024px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .stats-brackets-grid { grid-template-columns: 1fr; gap: 24px; }
+  .pain-grid-layout { grid-template-columns: 1fr; }
+  .solution-banner-grid { grid-template-columns: 1fr; }
+  .zigzag-row, .zigzag-row.reverse { grid-template-columns: 1fr; direction: ltr; }
+  .zigzag-row.reverse > * { direction: ltr; }
+  .persona-grid-3col { grid-template-columns: 1fr; gap: 30px; }
+  .persona-phone-center { order: -1; }
+  .why-icons-grid { grid-template-columns: repeat(2, 1fr); }
+  .testi-grid-2x2 { grid-template-columns: 1fr; }
+  .leader-profile-row { flex-direction: column; text-align: center; }
+  .leader-bullets { text-align: left; }
+  .footer-cols-grid { grid-template-columns: 1fr; gap: 24px; }
+}
+
+@media (max-width: 768px) {
+  .wrap { padding: 0 16px; }
+  .header-hotline { display: none; }
+  .section-hero { padding: 90px 0 40px; }
+  .hero-title-main { font-size: 23px; }
+  .hero-title-sub { font-size: 26px; }
+  .why-icons-grid { grid-template-columns: 1fr; }
+  .persona-cta-row { flex-direction: column; width: 100%; }
+  .persona-cta-row a { width: 100%; }
+  .mobile-sticky-footer { display: flex; }
+  body { padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     TOP FIXED HEADER
+     ============================================================ -->
+<header class="site-header">
+  <div class="wrap header-wrap">
+    <a href="#" class="header-logo" aria-label="INPRO.vn">
+      <img src="assets/inpro-ngang-titled-white.png" alt="INPRO.vn" width="168" height="32">
+    </a>
+    <div class="header-actions">
+      <a href="tel:0869634683" class="header-hotline">
+        <svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 14l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+        <span>Hotline: 0869 634 683</span>
+      </a>
+      <a href="#register-hero" class="header-btn">Đăng ký trải nghiệm</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     SECTION 1: HERO BANNER (TWIN BASE.VN HERO + DEVICES + FORM)
+     ============================================================ -->
+<section class="section-hero" id="register-hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <!-- Left Column: Value Prop & Cluster Devices Mockup -->
+      <div class="hero-left-content">
+        <div class="hero-badge-tag">Hệ thống AI Quản trị Bán hàng Đa kênh</div>
+        <h1 class="hero-title-main">PHẦN MỀM AI GIÚP NHÀ BÁN HÀNG</h1>
+        <div class="hero-title-sub">TĂNG TRƯỞNG LỢI NHUẬN</div>
+        <p class="hero-slogan">Tăng lời, vững lãi · Earn More. Keep More. Increase Profit.</p>
+
+        <ul class="hero-bullets">
+          <li>
+            <img src="assets/base/orange_check.png" alt="check">
+            <span><b>Hợp nhất dữ liệu kinh doanh từ online đến offline:</b> Đưa toàn bộ doanh thu, dòng tiền, chi phí về một màn hình realtime.</span>
+          </li>
+          <li>
+            <img src="assets/base/orange_check.png" alt="check">
+            <span><b>Tự động hóa vận hành và tối ưu các nguồn lực:</b> Chuẩn hóa khâu kho vận, in đơn, điều phối quà tặng và quản lý KOC.</span>
+          </li>
+          <li>
+            <img src="assets/base/orange_check.png" alt="check">
+            <span><b>Nâng cao năng lực quản trị, giúp doanh nghiệp gia tăng lợi nhuận:</b> Ra quyết định kinh doanh dựa trên dữ liệu chuẩn xác thay vì cảm tính.</span>
+          </li>
+        </ul>
+
+        <!-- Cluster of Devices (Base.vn exact visual twin) -->
+        <div class="hero-mockup-wrapper">
+          <img src="assets/base/hero_mockup.png" alt="INPRO AI Platform Devices Cluster Mockup" width="580" height="326">
+        </div>
+      </div>
+
+      <!-- Right Column: Form Card (Base.vn exact visual twin) -->
+      <div class="hero-right-form">
+        <div class="form-card-base">
+          <div class="form-card-top-bar"></div>
+          <div class="form-card-body">
+            <h2 class="form-card-title">ĐĂNG KÝ TRẢI NGHIỆM NGAY</h2>
+            <p class="form-card-subtitle">Nhận Demo toàn bộ tính năng phần mềm</p>
+
+            <form class="signup-lead-form" id="heroLeadForm">
+              <!-- 1. Họ và tên -->
+              <div class="form-group-item">
+                <input type="text" name="name" required placeholder="Họ và tên *" class="form-input-control" autocomplete="name">
+              </div>
+
+              <!-- 2. Số điện thoại -->
+              <div class="form-group-item">
+                <input type="tel" name="phone" required pattern="[0-9+ ]{9,13}" placeholder="Số điện thoại *" class="form-input-control" inputmode="tel" autocomplete="tel">
+              </div>
+
+              <!-- 3. Email -->
+              <div class="form-group-item">
+                <input type="email" name="email" required placeholder="Email *" class="form-input-control" inputmode="email" autocomplete="email">
+              </div>
+
+              <!-- 4. Ngành hàng kinh doanh -->
+              <div class="form-group-item">
+                <select name="industry" required class="form-input-control form-select-control">
+                  <option value="" disabled selected>Chọn ngành hàng kinh doanh *</option>
+                  <option value="Mẹ và bé">Mẹ và bé</option>
+                  <option value="FMCG / Hàng tiêu dùng">FMCG / Hàng tiêu dùng</option>
+                  <option value="Thời trang">Thời trang</option>
+                  <option value="Ngành hàng khác">Ngành hàng khác</option>
+                </select>
+              </div>
+
+              <!-- 5. Nhu cầu quan tâm -->
+              <div class="form-group-item">
+                <label class="form-label-small">Nhu cầu quan tâm * (Chọn 1 hoặc nhiều):</label>
+                <div class="needs-chips-grid">
+                  <label class="needs-chip">
+                    <input type="checkbox" name="needs" value="Tư vấn tổng thể">
+                    <span>Tư vấn tổng thể</span>
+                  </label>
+                  <label class="needs-chip">
+                    <input type="checkbox" name="needs" value="Quản lý bán hàng đa kênh">
+                    <span>Quản lý bán hàng đa kênh</span>
+                  </label>
+                  <label class="needs-chip">
+                    <input type="checkbox" name="needs" value="Theo dõi chi phí và lợi nhuận">
+                    <span>Theo dõi chi phí và lợi nhuận</span>
+                  </label>
+                  <label class="needs-chip">
+                    <input type="checkbox" name="needs" value="Quản lý quảng cáo, KOC/Affiliate">
+                    <span>Quản lý quảng cáo, KOC/Affiliate</span>
+                  </label>
+                  <label class="needs-chip">
+                    <input type="checkbox" name="needs" value="Quản lý chăm sóc khách hàng">
+                    <span>Quản lý chăm sóc khách hàng</span>
+                  </label>
+                  <label class="needs-chip">
+                    <input type="checkbox" name="needs" value="Quản lý bán sỉ và đại lý">
+                    <span>Quản lý bán sỉ và đại lý</span>
+                  </label>
+                  <label class="needs-chip">
+                    <input type="checkbox" name="needs" value="Quản lý dữ liệu khách hàng">
+                    <span>Quản lý dữ liệu khách hàng</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- CTA Submit Button -->
+              <button type="submit" class="btn-orange-pill btn-form-submit">
+                <span>HOÀN TẤT ĐĂNG KÝ ▶</span>
+              </button>
+
+              <p class="form-security-note">🔒 Thông tin được bảo mật 100% theo tiêu chuẩn an toàn.</p>
+            </form>
+
+            <div class="form-success-box">
+              <div class="form-success-icon">✓</div>
+              <h3 style="font-size:20px;color:var(--navy-dark);margin-bottom:6px">ĐĂNG KÝ THÀNH CÔNG!</h3>
+              <p style="font-size:14px;color:var(--text-mut)">Đội ngũ chuyên gia INPRO sẽ liên hệ với bạn trong thời gian sớm nhất.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 2: RÀO CẢN CỦA DOANH NGHIỆP (3 STATS WITH BRACKETS)
+     ============================================================ -->
+<section class="section-barriers">
+  <div class="wrap">
+    <!-- 3 Big Stat Cards with Bracket Styling (Exact Base.vn style) -->
+    <div class="stats-brackets-grid">
+      <div class="stat-bracket-card">
+        <div class="stat-num-val">70%</div>
+        <div class="stat-card-title">Doanh nghiệp chưa ứng dụng công nghệ cao</div>
+        <p class="stat-card-desc">Doanh nghiệp mới ứng dụng công nghệ ở mức cơ bản, dữ liệu phân tán trên nhiều hệ thống khiến việc kết nối thông tin và quản lý toàn diện còn hạn chế.</p>
+      </div>
+
+      <div class="stat-bracket-card">
+        <div class="stat-num-val">58%</div>
+        <div class="stat-card-title">CEO ra quyết định vào trực giác do dữ liệu quá tải</div>
+        <p class="stat-card-desc">Khi dữ liệu khó tổng hợp, CEO có thể phải quyết định dựa trên kinh nghiệm cá nhân thay vì bức tranh kinh doanh đầy đủ, làm tăng rủi ro trong phân bổ nguồn lực và quản trị lợi nhuận.</p>
+      </div>
+
+      <div class="stat-bracket-card">
+        <div class="stat-num-val">31%</div>
+        <div class="stat-card-title">CEO quá tải vì đội ngũ chưa thể tự vận hành</div>
+        <p class="stat-card-desc">Khi doanh nghiệp phụ thuộc quá nhiều vào một số nhân sự chủ chốt, công việc và kinh nghiệm khó được chuyển giao, hệ thống hóa. Lãnh đạo dễ rơi vào tình trạng phải trực tiếp xử lý nhiều đầu việc.</p>
+      </div>
+    </div>
+
+    <!-- Pain points list & Stressed CEO (Exact Base.vn layout) -->
+    <div class="pain-section-head">
+      <h2 class="pain-title-main">VÀ NHỮNG HỆ LỤY "ĐAU ĐỚN" LẠI DO CHÍNH SẾP VÀ DOANH NGHIỆP PHẢI GÁNH CHỊU</h2>
+      <p class="pain-title-sub">DOANH NGHIỆP ĐANG ĐÁNH MẤT LỢI NHUẬN TỪ NHỮNG ĐIỂM NGHẼN TRONG VẬN HÀNH</p>
+    </div>
+
+    <div class="pain-grid-layout">
+      <!-- Left: 5 Pain points with red ❌ icon -->
+      <div class="pain-items-list">
+        <div class="pain-item-row">
+          <img src="assets/base/problem_x.png" alt="problem">
+          <div class="pain-item-text"><b>Dữ liệu kinh doanh nằm rải rác ở nhiều nền tảng:</b> Khiến nhà quản lý mất thời gian tổng hợp và khó nắm được toàn diện bức tranh vận hành kịp thời.</div>
+        </div>
+
+        <div class="pain-item-row">
+          <img src="assets/base/problem_x.png" alt="problem">
+          <div class="pain-item-text"><b>Doanh thu có nhưng không rõ lãi bao nhiêu:</b> Các chi phí đầu tư vào tài nguyên và nguồn lực khó được đối chiếu, khiến lợi nhuận thực tế khó xác định chính xác.</div>
+        </div>
+
+        <div class="pain-item-row">
+          <img src="assets/base/problem_x.png" alt="problem">
+          <div class="pain-item-text"><b>Quy trình và kinh nghiệm nằm trong đầu từng người:</b> Khiến công việc dễ gián đoạn khi nhân sự nghỉ việc, thay đổi vị trí hoặc doanh nghiệp mở rộng đội ngũ.</div>
+        </div>
+
+        <div class="pain-item-row">
+          <img src="assets/base/problem_x.png" alt="problem">
+          <div class="pain-item-text"><b>Quy trình xử lý đơn hàng, quản lý kho và chăm sóc khách hàng thiếu liên kết:</b> Dễ phát sinh sai sót, chậm trễ đóng gói và tốn thêm nguồn lực khắc phục.</div>
+        </div>
+
+        <div class="pain-item-row">
+          <img src="assets/base/problem_x.png" alt="problem">
+          <div class="pain-item-text"><b>Sếp phải liên tục hỏi số liệu, đốc thúc nhân sự và xử lý vấn đề phát sinh:</b> Nhưng vẫn thiếu cơ sở dữ liệu kịp thời để tự tin đưa ra quyết định kinh doanh chiến lược.</div>
+        </div>
+      </div>
+
+      <!-- Right: Stressed Manager with floating social icons -->
+      <div class="pain-image-wrapper">
+        <img src="assets/base/stressed_ceo.png" alt="Stressed Manager" width="440" height="280">
+      </div>
+    </div>
+
+    <!-- Downward Chevron Guide Arrow -->
+    <div class="down-arrow-guide">
+      <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 3: GIẢI PHÁP CHO DOANH NGHIỆP (OVERVIEW BANNER)
+     ============================================================ -->
+<section class="section-solution-banner">
+  <div class="wrap">
+    <div class="solution-banner-grid">
+      <div>
+        <h2 class="sol-banner-title">INPRO – HỆ THỐNG QUẢN TRỊ THÔNG MINH, TỐI ƯU DÒNG TIỀN VÀ GIA TĂNG LỢI NHUẬN CHÍNH LÀ GIẢI PHÁP TỐI ƯU CHO <span class="text-orange">DOANH NGHIỆP CỦA BẠN</span></h2>
+        <p class="sol-banner-desc">Được xây dựng từ hệ sinh thái bán lẻ NoneLab với doanh thu 600–700 tỷ đồng/năm, INPRO giải quyết triệt để các bài toán vận hành thực chiến của nhà bán hàng đa kênh.</p>
+        <a href="#register-hero" class="btn-orange-pill">NHẬN DEMO PHẦN MỀM NGAY ▶</a>
+      </div>
+      <div class="solution-mockup-collage">
+        <img src="assets/base/dashboards_4.png" alt="INPRO AI Dashboards Collage" width="540" height="340">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 3 CONT: 4 ALTERNATING ZIGZAG BLOCKS (EXACT BASE.VN)
+     ============================================================ -->
+<section class="section-zigzag" id="solutions">
+  <div class="wrap">
+    <h2 class="zigzag-header-main">INPRO GIÚP DOANH NGHIỆP GIẢI QUYẾT NHỮNG BÀI TOÁN QUAN TRỌNG NÀO?</h2>
+
+    <!-- ZIGZAG BLOCK 1: Quản lý bán hàng đa kênh -->
+    <div class="zigzag-row">
+      <div class="zigzag-card">
+        <div class="zigzag-card-title-bar">1. Quản lý bán hàng đa kênh &amp; Dòng tiền Realtime</div>
+        <div class="zigzag-card-img">
+          <img src="assets/base/step1_laptop.jpg" alt="Quản lý bán hàng đa kênh" width="560" height="340">
+        </div>
+      </div>
+      <div class="zigzag-content">
+        <ul class="zigzag-bullets-list">
+          <li>
+            <img src="assets/base/orange_check.png" alt="check">
+            <span><b>Màn hình Realtime (30 giây):</b> Phát hiện biến động về dòng tiền và hiệu suất từng thương hiệu, tự động đề xuất giải pháp vận hành.</span>
+          </li>
+          <li>
+            <img src="assets/base/orange_check.png" alt="check">
+            <span><b>Trợ lý Ads AI:</b> Theo dõi các chỉ số và đề xuất điều chỉnh tối ưu từng chiến dịch quảng cáo trên các nền tảng TMĐT.</span>
+          </li>
+          <li>
+            <img src="assets/base/orange_check.png" alt="check">
+            <span><b>Kiểm soát dòng tiền &amp; Tính lãi thực:</b> Tự động phân tích sản phẩm, đối chiếu các nguồn tiền và tính toán chính xác lãi thực cho từng đơn hàng.</span>
+          </li>
+          <li>
+            <img src="assets/base/orange_check.png" alt="check">
+            <span><b>Phân bổ KPI &amp; Báo cáo định kỳ:</b> Tự động phân bổ doanh thu phù hợp theo từng thương hiệu và xuất báo cáo quản trị chi tiết.</span>
+          </li>
+        </ul>
+        <a href="#register-hero" class="btn-orange-pill">ĐĂNG KÝ NHẬN DEMO ▶</a>
+      </div>
+    </div>
+
+    <!-- ZIGZAG BLOCK 2: Quản lý KOC, CSKH & Bán sỉ B2B (REVERSED) -->
+    <div class="zigzag-row reverse">
+      <div class="zigzag-card">
+        <div class="zigzag-card-title-bar">2. Quản lý KOC, Affiliate, CSKH &amp; Bán sỉ B2B</div>
+        <div class="zigzag-card-img">
+          <img src="assets/base/step2_laptop.jpg" alt="Quản trị đối tác và CSKH" width="560" height="340">
+        </div>
+      </div>
+      <div class="zigzag-content">
+        <ul class="zigzag-bullets-list">
+          <li>
+            <img src="assets/base/orange_check.png" alt="check">
+            <span><b>Quản lý KOC &amp; Affiliate từ A-Z:</b> Tìm kiếm, phân loại KOC phù hợp, lưu trữ tiến trình hợp tác và theo dõi doanh thu affiliate theo thời gian thực.</span>
+          </li>
+          <li>
+            <img src="assets/base/orange_check.png" alt="check">
+            <span><b>Chăm sóc khách hàng đa kênh:</b> Hợp nhất tin nhắn từ nhiều nền tảng, phân chia nhóm khách hàng và theo dõi hiệu suất giải quyết vấn đề của đội ngũ.</span>
+          </li>
+          <li>
+            <img src="assets/base/orange_check.png" alt="check">
+            <span><b>Quản trị bán sỉ B2B qua đại lý:</b> Thiết lập mục tiêu kinh doanh, kiểm tra đơn sỉ, tự động xuất hóa đơn, phiếu xuất kho và chứng từ đầy đủ.</span>
+          </li>
+        </ul>
+        <a href="#register-hero" class="btn-orange-pill">ĐĂNG KÝ TRẢI NGHIỆM ▶</a>
+      </div>
+    </div>
+
+    <!-- ZIGZAG BLOCK 3: Quản lý kho và tối ưu xử lý đơn -->
+    <div class="zigzag-row">
+      <div class="zigzag-card">
+        <div class="zigzag-card-title-bar">3. Quản lý kho &amp; Tối ưu quy trình xử lý đơn Wave Picking</div>
+        <div class="zigzag-card-img">
+          <img src="assets/base/step3_laptop.jpg" alt="Kho vận và xử lý đơn hàng" width="560" height="340">
+        </div>
+      </div>
+      <div class="zigzag-content">
+        <ul class="zigzag-bullets-list">
+          <li>
+            <img src="assets/base/orange_check.png" alt="check">
+            <span><b>Quản lý kho &amp; Tồn kho tập trung:</b> Quản lý mã SKU, vị trí lưu trữ và số lượng tồn kho theo thời gian thực, giảm thiểu thất thoát.</span>
+          </li>
+          <li>
+            <img src="assets/base/orange_check.png" alt="check">
+            <span><b>Gom nhóm đơn bằng Wave Picking:</b> Tự động tạo danh sách lấy hàng (Pick List), tối ưu quãng đường di chuyển trong kho.</span>
+          </li>
+          <li>
+            <img src="assets/base/orange_check.png" alt="check">
+            <span><b>Chuẩn hóa Picking &amp; Packing:</b> Tự động in đơn hàng, in vận đơn theo quy tắc hoặc khung giờ cài đặt, giảm sai sót tối đa.</span>
+          </li>
+        </ul>
+        <a href="#register-hero" class="btn-orange-pill">ĐĂNG KÝ NHẬN DEMO ▶</a>
+      </div>
+    </div>
+
+    <!-- ZIGZAG BLOCK 4: Điều phối campaign & Giám sát vận hành (REVERSED) -->
+    <div class="zigzag-row reverse">
+      <div class="zigzag-card">
+        <div class="zigzag-card-title-bar">4. Điều phối quà chiến dịch &amp; Giám sát vận hành thông minh</div>
+        <div class="zigzag-card-img">
+          <img src="assets/base/step4_tablet.jpg" alt="Giám sát vận hành toàn diện" width="560" height="340">
+        </div>
+      </div>
+      <div class="zigzag-content">
+        <ul class="zigzag-bullets-list">
+          <li>
+            <img src="assets/base/orange_check.png" alt="check">
+            <span><b>Phân bổ quà tặng theo chiến dịch:</b> Thiết lập quy tắc cấp quà theo campaign, kiểm soát chặt chẽ tránh thiếu quà hoặc lệch tồn kho.</span>
+          </li>
+          <li>
+            <img src="assets/base/orange_check.png" alt="check">
+            <span><b>Luồng gửi hàng mẫu cho KOC/Creator:</b> Kết nối trực tiếp từ quản lý KOC đến kho, đồng bộ trạng thái xử lý đơn mẫu xuyên suốt.</span>
+          </li>
+          <li>
+            <img src="assets/base/orange_check.png" alt="check">
+            <span><b>Giám sát và cảnh báo tự động:</b> Cảnh báo ngay khi phát sinh lỗi vận hành, tự động tổng hợp báo cáo chuyên sâu cho ban lãnh đạo.</span>
+          </li>
+        </ul>
+        <a href="#register-hero" class="btn-orange-pill">ĐĂNG KÝ TRẢI NGHIỆM ▶</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION: PERSONA BREAKDOWN (95% VƯỢT KỲ VỌNG - PHONE CENTER)
+     ============================================================ -->
+<section class="section-persona">
+  <div class="wrap">
+    <h2 class="persona-head-title">95% DOANH NGHIỆP ĐÁNH GIÁ GIẢI PHÁP CỦA INPRO <span class="text-orange">VƯỢT TRÊN KỲ VỌNG</span></h2>
+
+    <div class="persona-grid-3col">
+      <!-- Left Column: CEO & Team Lead -->
+      <div class="persona-col-stack">
+        <div class="persona-box">
+          <div class="persona-box-title">VỚI CEO / BAN LÃNH ĐẠO</div>
+          <ul>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M5 12l4 4 8-9"/></svg>
+              <span>Hợp nhất toàn bộ dữ liệu kinh doanh, không còn phụ thuộc báo cáo Excel thủ công.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M5 12l4 4 8-9"/></svg>
+              <span>Nắm rõ lãi thực từng thương hiệu, tự tin ra quyết định đầu tư và phân bổ nguồn lực.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M5 12l4 4 8-9"/></svg>
+              <span>Giảm tải áp lực trực tiếp điều hành, xây dựng hệ thống tự vận hành bền vững.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="persona-box">
+          <div class="persona-box-title">VỚI TRƯỞNG PHÒNG / TEAM LEAD</div>
+          <ul>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M5 12l4 4 8-9"/></svg>
+              <span>Tự động hóa theo dõi tiến độ công việc và KPI của từng nhân sự phụ trách.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M5 12l4 4 8-9"/></svg>
+              <span>Phát hiện ngay điểm nghẽn và biến động quảng cáo trong ngày để tối ưu kịp thời.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Center Column: Smartphone in Hand (Base.vn exact visual twin) -->
+      <div class="persona-phone-center">
+        <img src="assets/base/phone_center.png" alt="INPRO Mobile App Mockup in Hand" width="320" height="480">
+      </div>
+
+      <!-- Right Column: Doanh Nghiệp & Nhân Viên -->
+      <div class="persona-col-stack">
+        <div class="persona-box">
+          <div class="persona-box-title">VỚI DOANH NGHIỆP</div>
+          <ul>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M5 12l4 4 8-9"/></svg>
+              <span>Tiết kiệm 30–50% chi phí vận hành, giảm thất thoát hàng hóa và sai lệch tồn kho.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M5 12l4 4 8-9"/></svg>
+              <span>Chuẩn hóa tri thức nội bộ, dễ dàng chuyển giao quy trình khi mở rộng quy mô.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="persona-box">
+          <div class="persona-box-title">VỚI ĐỘI NGŨ NHÂN VIÊN</div>
+          <ul>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M5 12l4 4 8-9"/></svg>
+              <span>Giảm bớt thời gian nhập liệu thủ công, quy trình đóng gói và in đơn rõ ràng.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M5 12l4 4 8-9"/></svg>
+              <span>Trợ lý AI hỗ trợ xử lý việc nhanh chóng, nâng cao năng suất và hiệu quả cá nhân.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 Buttons Row (Base.vn exact style) -->
+    <div class="persona-cta-row">
+      <a href="#register-hero" class="btn-orange-pill">ĐĂNG KÝ DEMO TRẢI NGHIỆM</a>
+      <a href="#solutions" class="btn-outline-pill">XEM TOÀN BỘ TÍNH NĂNG</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 4: TẠI SAO NÊN LỰA CHỌN INPRO? (6 CIRCULAR ICONS)
+     ============================================================ -->
+<section class="section-why-inpro">
+  <div class="wrap">
+    <h2 class="why-section-title">TẠI SAO NÊN LỰA CHỌN <span class="text-orange">INPRO?</span></h2>
+
+    <div class="why-icons-grid">
+      <!-- 1. AI tích lũy tri thức -->
+      <div class="why-icon-card">
+        <div class="why-icon-circle">
+          <img src="assets/base/icon_user.png" alt="AI Tri Thức">
+        </div>
+        <div class="why-card-text-title">1. AI tích lũy tri thức</div>
+        <p class="why-card-text-desc">INPRO học hỏi từ nhân sự tốt nhất, lưu giữ tri thức nội bộ, giảm sự phụ thuộc vào cá nhân và xây dựng nền tảng quản trị bền vững.</p>
+      </div>
+
+      <!-- 2. Dữ liệu rõ ràng -->
+      <div class="why-icon-card">
+        <div class="why-icon-circle">
+          <img src="assets/base/icon_cloud.png" alt="Dữ liệu rõ ràng">
+        </div>
+        <div class="why-card-text-title">2. Dữ liệu rõ ràng, quản trị chủ động</div>
+        <p class="why-card-text-desc">Nhà quản lý có cơ sở nhìn nhận toàn diện hiệu quả vận hành, xác định điểm nghẽn và hiểu rõ vì sao doanh nghiệp đạt được kết quả đó.</p>
+      </div>
+
+      <!-- 3. Bài toán thực chiến -->
+      <div class="why-icon-card">
+        <div class="why-icon-circle">
+          <img src="assets/base/icon_cog.png" alt="Bài toán thực tế">
+        </div>
+        <div class="why-card-text-title">3. Xây dựng từ bài toán thực tế</div>
+        <p class="why-card-text-desc">Phát triển bởi CEO Thành Định từ hệ sinh thái bán lẻ NoneLab doanh thu 600–700 tỷ/năm, giải quyết tận gốc các khó khăn thực tiễn.</p>
+      </div>
+
+      <!-- 4. Lợi ích kinh tế -->
+      <div class="why-icon-card">
+        <div class="why-icon-circle">
+          <img src="assets/base/icon_clock.png" alt="Lợi ích kinh tế">
+        </div>
+        <div class="why-card-text-title">4. Lợi ích kinh tế đo lường được</div>
+        <p class="why-card-text-desc">Đánh giá hiệu quả đầu tư qua các chỉ số thực tế: chi phí tiết kiệm, năng suất cải thiện và mức độ gia tăng lợi nhuận rõ rệt.</p>
+      </div>
+
+      <!-- 5. Lợi ích tri thức -->
+      <div class="why-icon-card">
+        <div class="why-icon-circle">
+          <img src="assets/base/icon_bell.png" alt="Lợi ích tri thức">
+        </div>
+        <div class="why-card-text-title">5. Lợi ích tri thức &amp; kế thừa</div>
+        <p class="why-card-text-desc">Lưu giữ phương pháp làm việc hiệu quả, rút ngắn thời gian đào tạo nhân sự mới và hạn chế thất thoát tri thức khi nhân sự thay đổi.</p>
+      </div>
+
+      <!-- 6. Bảo mật và tốc độ -->
+      <div class="why-icon-card">
+        <div class="why-icon-circle">
+          <img src="assets/base/icon_mobile.png" alt="Bảo mật & Tốc độ">
+        </div>
+        <div class="why-card-text-title">6. Triển khai nhanh chóng</div>
+        <p class="why-card-text-desc">Không cần cài đặt phức tạp, vận hành mượt mà trên cả máy tính và điện thoại di động với độ bảo mật dữ liệu cấp cao.</p>
+      </div>
+    </div>
+
+    <a href="#register-hero" class="btn-orange-pill">ĐĂNG KÝ DEMO TRẢI NGHIỆM</a>
+  </div>
+</section>
+
+<!-- ============================================================
+     TESTIMONIALS: PHẢN HỒI TỪ CÁC THƯƠNG HIỆU LỚN
+     ============================================================ -->
+<section class="section-testimonials">
+  <div class="wrap">
+    <h2 class="testi-header-main">PHẢN HỒI TỪ CÁC THƯƠNG HIỆU ĐÃ TRỰC TIẾP ÁP DỤNG PHẦN MỀM</h2>
+
+    <div class="testi-grid-2x2">
+      <!-- 1. Nerman -->
+      <div class="testi-card-blue">
+        <div class="testi-author-bar">
+          <div class="testi-author-avatar">
+            <img src="assets/nerman.jpg" alt="Nerman">
+          </div>
+          <div class="testi-author-info">
+            <h4>Thương hiệu NERMAN</h4>
+            <p>Mỹ phẩm nam hàng đầu Việt Nam</p>
+          </div>
+        </div>
+        <p class="testi-quote-content">"Trước đây khi quản lý đa kênh trên Shopee, TikTok Shop và đại lý, dòng tiền và chi phí ads bị phân tán khắp nơi. Từ khi đưa INPRO vào vận hành, chúng tôi kiểm soát được lãi thực từng ngày theo thời gian thực 30 giây, khâu đóng gói kho Wave Picking tăng tốc gấp đôi."</p>
+        <div class="testi-footer-row">
+          <span class="testi-domain-tag">Lĩnh vực Mỹ phẩm &amp; Bán lẻ</span>
+          <a href="#register-hero" class="btn-testi-cta">TƯ VẤN NGAY ▶</a>
+        </div>
+      </div>
+
+      <!-- 2. Lion Bartender -->
+      <div class="testi-card-blue">
+        <div class="testi-author-bar">
+          <div class="testi-author-avatar">
+            <img src="assets/lion-bartender.jpg" alt="Lion Bartender">
+          </div>
+          <div class="testi-author-info">
+            <h4>LION BARTENDER</h4>
+            <p>Dụng cụ pha chế &amp; phong cách sống</p>
+          </div>
+        </div>
+        <p class="testi-quote-content">"Quản lý hơn 500 SKU và hàng trăm đối tác KOC/Affiliate từng là cơn ác mộng mỗi mùa Mega Sale. INPRO giúp đồng bộ luồng gửi mẫu KOC với kho tức thì, điều phối quà tặng chuẩn chỉ không lo thiếu hụt hay nhầm lẫn."</p>
+        <div class="testi-footer-row">
+          <span class="testi-domain-tag">Lĩnh vực Phụ kiện &amp; Đồ gia dụng</span>
+          <a href="#register-hero" class="btn-testi-cta">TƯ VẤN NGAY ▶</a>
+        </div>
+      </div>
+
+      <!-- 3. Menow -->
+      <div class="testi-card-blue">
+        <div class="testi-author-bar">
+          <div class="testi-author-avatar">
+            <img src="assets/menow.png" alt="Menow">
+          </div>
+          <div class="testi-author-info">
+            <h4>Thương hiệu MENOW</h4>
+            <p>Thời trang &amp; Chăm sóc cá nhân</p>
+          </div>
+        </div>
+        <p class="testi-quote-content">"Điều tuyệt vời nhất ở INPRO là tính năng trợ lý Ads AI. Hệ thống cảnh báo ngay những camp đang tụt ROAS và gợi ý điều chỉnh ngân sách chính xác, giúp chúng tôi bảo toàn biên lợi nhuận ròng mà không cần sếp phải túc trực 24/7."</p>
+        <div class="testi-footer-row">
+          <span class="testi-domain-tag">Lĩnh vực Thời trang &amp; Tiêu dùng</span>
+          <a href="#register-hero" class="btn-testi-cta">TƯ VẤN NGAY ▶</a>
+        </div>
+      </div>
+
+      <!-- 4. Mistory -->
+      <div class="testi-card-blue">
+        <div class="testi-author-bar">
+          <div class="testi-author-avatar">
+            <img src="assets/mistory.png" alt="Mistory">
+          </div>
+          <div class="testi-author-info">
+            <h4>Thương hiệu MISTORY</h4>
+            <p>Mỹ phẩm và chăm sóc mẹ &amp; bé</p>
+          </div>
+        </div>
+        <p class="testi-quote-content">"Quy trình xử lý đơn sỉ và xuất hóa đơn cho các đại lý trước đây mất từ 2-3 ngày thì nay gói gọn trong vài phút trên INPRO. Tri thức làm việc được hệ thống hóa, nhân sự mới vào chỉ mất 2 ngày là có thể thao tác thuần thục."</p>
+        <div class="testi-footer-row">
+          <span class="testi-domain-tag">Lĩnh vực Mẹ &amp; Bé / Chăm sóc</span>
+          <a href="#register-hero" class="btn-testi-cta">TƯ VẤN NGAY ▶</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     LEADERSHIP SECTION: ĐỘI NGŨ LÃNH ĐẠO (HEXAGON AVATAR)
+     ============================================================ -->
+<section class="section-leadership">
+  <div class="wrap">
+    <h2 class="leader-head-title">ĐỘI NGŨ <span class="text-orange">LÃNH ĐẠO</span></h2>
+
+    <div class="leader-profile-row">
+      <!-- Hexagonal Frame (Base.vn exact twin) -->
+      <div class="hexagon-wrapper">
+        <div class="hexagon-inner">
+          <img src="assets/inpro-vuong.png" alt="Mr. Thành Định - Founder & CEO NoneLab & INPRO">
+        </div>
+      </div>
+
+      <div class="leader-bio-info">
+        <h3>Mr. Thành Định</h3>
+        <span class="leader-role-tag">Founder &amp; CEO Nonelab · Nhà sáng lập INPRO.vn</span>
+        <ul class="leader-bullets">
+          <li>
+            <span class="star">★</span>
+            <span>Nhà sáng lập và lãnh đạo hệ sinh thái bán lẻ gồm 4 thương hiệu lớn tại thị trường Việt Nam &amp; Đông Nam Á.</span>
+          </li>
+          <li>
+            <span class="star">★</span>
+            <span>Điều hành hệ sinh thái NoneLab với mức doanh thu trung bình năm đạt khoảng <b>600–700 tỷ đồng</b>.</span>
+          </li>
+          <li>
+            <span class="star">★</span>
+            <span>Xuất phát từ chính bài toán vận hành và thất thoát lợi nhuận thực tế, INPRO được thiết kế chuyên sâu để giải quyết triệt để những điểm nghẽn của nhà bán hàng.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 6: BOTTOM REGISTRATION FORM (CLONE FORM BASE.VN)
+     ============================================================ -->
+<section class="section-bottom-form" id="register-bottom">
+  <div class="wrap">
+    <div class="bottom-form-container">
+      <div class="form-card-base">
+        <div class="form-card-top-bar"></div>
+        <div class="form-card-body">
+          <h2 class="form-card-title">ĐĂNG KÝ TRẢI NGHIỆM NGAY</h2>
+          <p class="form-card-subtitle">Nhận Demo toàn bộ tính năng phần mềm INPRO</p>
+
+          <form class="signup-lead-form" id="bottomLeadForm">
+            <!-- 1. Họ và tên -->
+            <div class="form-group-item">
+              <input type="text" name="name" required placeholder="Họ và tên *" class="form-input-control" autocomplete="name">
+            </div>
+
+            <!-- 2. Số điện thoại -->
+            <div class="form-group-item">
+              <input type="tel" name="phone" required pattern="[0-9+ ]{9,13}" placeholder="Số điện thoại *" class="form-input-control" inputmode="tel" autocomplete="tel">
+            </div>
+
+            <!-- 3. Email -->
+            <div class="form-group-item">
+              <input type="email" name="email" required placeholder="Email *" class="form-input-control" inputmode="email" autocomplete="email">
+            </div>
+
+            <!-- 4. Ngành hàng kinh doanh -->
+            <div class="form-group-item">
+              <select name="industry" required class="form-input-control form-select-control">
+                <option value="" disabled selected>Chọn ngành hàng kinh doanh *</option>
+                <option value="Mẹ và bé">Mẹ và bé</option>
+                <option value="FMCG / Hàng tiêu dùng">FMCG / Hàng tiêu dùng</option>
+                <option value="Thời trang">Thời trang</option>
+                <option value="Ngành hàng khác">Ngành hàng khác</option>
+              </select>
+            </div>
+
+            <!-- 5. Nhu cầu quan tâm -->
+            <div class="form-group-item">
+              <label class="form-label-small">Nhu cầu quan tâm * (Chọn 1 hoặc nhiều):</label>
+              <div class="needs-chips-grid">
+                <label class="needs-chip">
+                  <input type="checkbox" name="needs" value="Tư vấn tổng thể">
+                  <span>Tư vấn tổng thể</span>
+                </label>
+                <label class="needs-chip">
+                  <input type="checkbox" name="needs" value="Quản lý bán hàng đa kênh">
+                  <span>Quản lý bán hàng đa kênh</span>
+                </label>
+                <label class="needs-chip">
+                  <input type="checkbox" name="needs" value="Theo dõi chi phí và lợi nhuận">
+                  <span>Theo dõi chi phí và lợi nhuận</span>
+                </label>
+                <label class="needs-chip">
+                  <input type="checkbox" name="needs" value="Quản lý quảng cáo, KOC/Affiliate">
+                  <span>Quản lý quảng cáo, KOC/Affiliate</span>
+                </label>
+                <label class="needs-chip">
+                  <input type="checkbox" name="needs" value="Quản lý chăm sóc khách hàng">
+                  <span>Quản lý chăm sóc khách hàng</span>
+                </label>
+                <label class="needs-chip">
+                  <input type="checkbox" name="needs" value="Quản lý bán sỉ và đại lý">
+                  <span>Quản lý bán sỉ và đại lý</span>
+                </label>
+                <label class="needs-chip">
+                  <input type="checkbox" name="needs" value="Quản lý dữ liệu khách hàng">
+                  <span>Quản lý dữ liệu khách hàng</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- CTA Submit Button -->
+            <button type="submit" class="btn-orange-pill btn-form-submit">
+              <span>HOÀN TẤT ĐĂNG KÝ ▶</span>
+            </button>
+
+            <p class="form-security-note">🔒 Thông tin được bảo mật 100% theo tiêu chuẩn an toàn.</p>
+          </form>
+
+          <div class="form-success-box">
+            <div class="form-success-icon">✓</div>
+            <h3 style="font-size:20px;color:var(--navy-dark);margin-bottom:6px">ĐĂNG KÝ THÀNH CÔNG!</h3>
+            <p style="font-size:14px;color:var(--text-mut)">Đội ngũ chuyên gia INPRO sẽ liên hệ với bạn trong thời gian sớm nhất.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 7: CORPORATE FOOTER
+     ============================================================ -->
+<footer class="corporate-footer">
+  <div class="wrap">
+    <div class="footer-cols-grid">
+      <div>
+        <div class="footer-logo">
+          <img src="assets/inpro-ngang-titled-white.png" alt="INPRO.vn" width="200" height="44">
+        </div>
+        <p style="margin-bottom:12px;color:#94a3b8">INPRO.vn – Phần mềm AI giúp nhà bán hàng tăng trưởng lợi nhuận. Hợp nhất dữ liệu kinh doanh từ online đến offline, tự động hóa vận hành và gia tăng năng lực quản trị doanh nghiệp.</p>
+        <p style="font-weight:700;color:#f3e8ff">Hệ sinh thái Nonelab · Doanh thu bán lẻ 600–700 tỷ/năm</p>
+      </div>
+
+      <div>
+        <div class="footer-title">Giải pháp Inpro</div>
+        <ul class="footer-links">
+          <li><a href="#solutions">Quản lý bán hàng đa kênh &amp; Lãi thực</a></li>
+          <li><a href="#solutions">Quản lý KOC, Affiliate &amp; Content</a></li>
+          <li><a href="#solutions">Quản trị kho vận Wave Picking</a></li>
+          <li><a href="#solutions">Quản trị bán sỉ B2B qua đại lý</a></li>
+          <li><a href="#solutions">Trợ lý Ads AI &amp; Tài chính Realtime</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-title">Thông tin liên hệ</div>
+        <p style="margin-bottom:6px"><b>Hotline:</b> <a href="tel:0869634683" style="color:#ffffff">0869 634 683</a></p>
+        <p style="margin-bottom:6px"><b>Zalo:</b> <a href="https://zalo.me/869634683" target="_blank" rel="noopener" style="color:#60a5fa">0869 634 683</a></p>
+        <p style="margin-bottom:6px"><b>Website:</b> <a href="https://inpro.vn" target="_blank" rel="noopener" style="color:#c084fc">https://inpro.vn</a></p>
+        <p style="font-size:12px;margin-top:10px;color:#64748b">Trụ sở Hà Nội · VP TP. Hồ Chí Minh · VP Đà Nẵng</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom-copy">
+      © 2026 INPRO.vn · Hệ sinh thái NoneLab. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE STICKY ACTION BAR -->
+<div class="mobile-sticky-footer">
+  <a href="tel:0869634683" class="m-call-btn" aria-label="Gọi hotline">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 14l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+  </a>
+  <a href="#register-hero" class="m-cta-btn">
+    <span>ĐĂNG KÝ TƯ VẤN NGAY</span>
+  </a>
+</div>
+
+<!-- ============================================================
+     GOOGLE APPS SCRIPT SUBMIT LOGIC
+     ============================================================ -->
+<script>
+// Apps Script URL kết nối trực tiếp đến Google Sheet
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbw1DxceJORyQEXRUeEmfLitqnfjZvl4hduDqFFYkCsZpCWK12kkXRBBpVWdrQiYJWq4kg/exec';
+
+// Tương tác checkbox chip
+document.querySelectorAll('.needs-chip input[type="checkbox"]').forEach(chk => {
+  chk.addEventListener('change', () => {
+    chk.closest('.needs-chip').classList.toggle('checked', chk.checked);
+  });
+});
+
+// Xử lý gửi form
+document.querySelectorAll('form.signup-lead-form').forEach(form => {
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const btn = form.querySelector('button[type="submit"]');
+    const originalText = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<span>Đang gửi thông tin...</span>';
+
+    const formData = new FormData(form);
+    const selectedNeeds = formData.getAll('needs');
+
+    const name = (formData.get('name') || '').trim();
+    const phone = (formData.get('phone') || '').trim();
+    const email = (formData.get('email') || '').trim();
+    const industry = (formData.get('industry') || '').trim();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const utm = {
+      source: urlParams.get('utm_source') || 'base_clone_form',
+      medium: urlParams.get('utm_medium') || 'direct',
+      campaign: urlParams.get('utm_campaign') || 'inpro_signup',
+      content: urlParams.get('utm_content') || '',
+      term: urlParams.get('utm_term') || ''
+    };
+
+    const payload = {
+      name: name,
+      phone: phone,
+      email: email,
+      industry: industry,
+      company_size: industry, // Giữ tương thích cột QUY MÔ của sheet 13 cột
+      consult_time: selectedNeeds.slice(0, 2).join(', '),
+      message: 'Ngành: ' + industry + ' | Nhu cầu: ' + (selectedNeeds.join(', ') || 'Chưa chọn cụ thể'),
+      needs: selectedNeeds,
+      utm: utm,
+      source_form: form.id || 'signup_base_clone',
+      device: (window.innerWidth <= 768 ? 'mobile' : window.innerWidth <= 1024 ? 'tablet' : 'desktop') + ' ' + window.innerWidth + 'px',
+      page: window.location.href,
+      ts: new Date().toISOString()
+    };
+
+    const successContainer = form.parentElement.querySelector('.form-success-box');
+
+    function showSuccess() {
+      form.style.display = 'none';
+      if (successContainer) successContainer.style.display = 'block';
+    }
+
+    if (!SHEET_URL) {
+      console.log('Mockup submit payload:', payload);
+      setTimeout(showSuccess, 500);
+      return;
+    }
+
+    fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    })
+    .then(() => {
+      showSuccess();
+    })
+    .catch(err => {
+      console.error('Submit error:', err);
+      showSuccess();
+    });
+  });
+});
+</script>
+
+</body>
+</html>
