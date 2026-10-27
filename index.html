@@ -970,6 +970,7 @@ header.site-header {
   gap: 8px;
 }
 .leader-bullets li span.star { color: var(--base-orange); font-size: 16px; }
+.leader-profile-row + .leader-profile-row { margin-top: 28px; }
 
 /* ============================================================
    SECTION 6: BOTTOM REGISTRATION FORM
@@ -1873,6 +1874,41 @@ footer.corporate-footer {
         </ul>
       </div>
     </div>
+
+    <div class="leader-profile-row">
+      <div class="hexagon-wrapper">
+        <div class="hexagon-inner">
+          <img src="assets/vu-bao-thang.jpg" alt="Mr. Vũ Bảo Thắng - Founder &amp; CEO Meta Ecom Group" loading="lazy" style="object-position:50% 25%">
+        </div>
+      </div>
+
+      <div class="leader-bio-info">
+        <h3>Mr. Vũ Bảo Thắng</h3>
+        <span class="leader-role-tag">Founder &amp; CEO Meta Ecom Group · Founder &amp; COO MindAI</span>
+        <ul class="leader-bullets">
+          <li>
+            <span class="star">★</span>
+            <span>Phó Ban Phát triển Nguồn Nhân lực – Hiệp hội Thương mại Điện tử Việt Nam (VECOM).</span>
+          </li>
+          <li>
+            <span class="star">★</span>
+            <span>Lãnh đạo Meta Ecom Group (Agency, MCN, Digital, Global, Uni, D2C).</span>
+          </li>
+          <li>
+            <span class="star">★</span>
+            <span>Từng giữ vị trí Marketing Manager tại Vinalink Media, Marketing Director tại Sao Kim Branding, Ecommerce Manager tại K's Closet.</span>
+          </li>
+          <li>
+            <span class="star">★</span>
+            <span>Executive MBA – Đại học Kinh tế Quốc dân (NEU); Giảng viên thỉnh giảng tại Học viện Công nghệ Bưu chính Viễn thông (PTIT).</span>
+          </li>
+          <li>
+            <span class="star">★</span>
+            <span>Tư vấn, đào tạo và triển khai cho hàng trăm nhãn hàng về Digital Marketing &amp; Thương mại điện tử.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -2024,7 +2060,7 @@ footer.corporate-footer {
      ============================================================ -->
 <script>
 // Apps Script URL kết nối trực tiếp đến Google Sheet
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbw1DxceJORyQEXRUeEmfLitqnfjZvl4hduDqFFYkCsZpCWK12kkXRBBpVWdrQiYJWq4kg/exec';
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyssoo_0K8He_bONfZVfS58FaxNKmKnqf3zCWi_YyThBQPsPdFk71P_UIzAwF375o4OjQ/exec';
 
 // Tối ưu mobile: lazy-load ảnh ngoài màn hình đầu để tải nhanh hơn trên 4G
 document.querySelectorAll('img').forEach(img => {
@@ -2091,8 +2127,8 @@ document.querySelectorAll('form.signup-lead-form').forEach(form => {
       message: 'Ngành: ' + industry + ' | Nhu cầu: ' + (selectedNeeds.join(', ') || 'Chưa chọn cụ thể'),
       needs: selectedNeeds,
       utm: utm,
-      source_form: form.id || 'signup_base_clone',
-      device: (window.innerWidth <= 768 ? 'mobile' : window.innerWidth <= 1024 ? 'tablet' : 'desktop') + ' ' + window.innerWidth + 'px',
+      source_form: form.id === 'heroLeadForm' ? 'Form Đầu trang (Hero)' : 'Form Cuối trang (Bottom)',
+      device: (window.innerWidth <= 768 ? 'Mobile' : window.innerWidth <= 1024 ? 'Tablet' : 'Desktop') + ' (' + window.innerWidth + 'px)',
       page: window.location.href,
       ts: new Date().toISOString()
     };
