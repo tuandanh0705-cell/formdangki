@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#1a0b2e">
+<meta name="theme-color" content="#ffffff">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="format-detection" content="telephone=no">
@@ -1235,6 +1235,36 @@ footer.corporate-footer {
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+/* ============================================================
+   ĐỒNG BỘ GIAO DIỆN VỚI LANDINGPAGE (nền & navigation bar)
+   ============================================================ */
+:root {
+  --purple-midnight: #18233d;  /* Brand Navy */
+  --purple-card-bg: #271249;
+  --purple-banner: #271249;
+  --purple-footer: #18233d;
+  --hero-grad: linear-gradient(135deg, #18233d 0%, #271249 38%, #4c1d95 72%, #7e22ce 100%);
+  --reg-grad: linear-gradient(135deg, #18233d 0%, #2a1254 35%, #6b21a8 70%, #9333ea 100%);
+}
+header.site-header {
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-line);
+  box-shadow: 0 1px 0 var(--border-line);
+}
+.header-hotline { color: var(--navy-dark); }
+.header-hotline svg { fill: var(--primary-purple); }
+.section-hero { background: var(--hero-grad); }
+.section-hero::before {
+  content: "";
+  position: absolute;
+  width: 680px; height: 680px;
+  left: -200px; top: -220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168, 85, 247, .32), transparent 65%);
+  pointer-events: none;
+}
+.section-solution-banner, .section-why-inpro { background: var(--reg-grad); }
+.section-bottom-form { background: #f8fafc; }
 </style>
 </head>
 <body>
@@ -1245,7 +1275,7 @@ footer.corporate-footer {
 <header class="site-header">
   <div class="wrap header-wrap">
     <a href="#" class="header-logo" aria-label="INPRO.vn">
-      <img src="assets/inpro-ngang-titled-white.png" alt="INPRO.vn" width="168" height="32">
+      <img src="assets/inpro-ngang.png" alt="INPRO.vn" width="168" height="32">
     </a>
     <div class="header-actions">
       <a href="tel:0925376699" class="header-hotline">
@@ -2054,6 +2084,100 @@ footer.corporate-footer {
     <span>ĐĂNG KÝ NHẬN DEMO NGAY</span>
   </a>
 </div>
+<!-- ============================================================
+     POPUP FORM ĐĂNG KÝ (mở từ các nút CTA)
+     ============================================================ -->
+<style>
+.modal { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(24,35,61,.62); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); opacity: 0; visibility: hidden; transition: opacity .28s ease, visibility 0s linear .28s; overflow-y: auto; }
+.modal.open { opacity: 1; visibility: visible; transition: opacity .28s ease, visibility 0s; }
+.modal-box { position: relative; width: 100%; max-width: 480px; margin: auto; transform: translateY(24px) scale(.97); transition: transform .35s cubic-bezier(.16,1,.3,1); }
+.modal.open .modal-box { transform: none; }
+.modal-close { position: absolute; top: -14px; right: -14px; z-index: 2; width: 40px; height: 40px; border-radius: 50%; border: 0; background: #fff; color: var(--navy-dark); font-size: 18px; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,.25); transition: .2s; }
+.modal-close:hover { background: var(--purple-tint); color: var(--primary-purple); transform: rotate(90deg); }
+.modal .form-card-base { max-height: calc(100dvh - 40px); overflow-y: auto; }
+/* Mobile: danh sách nhu cầu dạng thanh cuốn, chỉ hiển thị 3 nhu cầu */
+@media (max-width: 768px) {
+  .needs-chips-grid { max-height: 154px; overflow-y: auto; padding-right: 6px; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: var(--primary-purple) #e2e8f0; }
+  .needs-chips-grid::-webkit-scrollbar { width: 5px; }
+  .needs-chips-grid::-webkit-scrollbar-track { background: #e2e8f0; border-radius: 99px; }
+  .needs-chips-grid::-webkit-scrollbar-thumb { background: var(--primary-purple); border-radius: 99px; }
+}
+/* Ảnh minh họa "tổn thất": hòa nền ảnh vào nền trang, không lộ viền khung */
+.pain-image-wrapper img {
+  filter: none;
+  mix-blend-mode: multiply;
+  -webkit-mask-image: radial-gradient(ellipse 72% 72% at 50% 50%, #000 62%, transparent 100%);
+  mask-image: radial-gradient(ellipse 72% 72% at 50% 50%, #000 62%, transparent 100%);
+}
+/* Mobile: khối "tổn thất âm thầm" gọn trong 1 màn hình điện thoại */
+@media (max-width: 768px) {
+  .pain-section-head { margin-bottom: 14px; }
+  .pain-title-main { font-size: clamp(16px, 5vw, 20px); line-height: 1.28; margin-bottom: 6px; }
+  .pain-title-sub { font-size: 10.5px; line-height: 1.35; }
+  .pain-grid-layout { gap: 8px; }
+  .pain-items-list { gap: 9px; }
+  .pain-item-row { gap: 9px; }
+  .pain-item-row img { width: 18px; height: 18px; margin-top: 2px; }
+  .pain-item-text { font-size: 12.5px; line-height: 1.4; }
+  .pain-image-wrapper img { width: 100%; max-width: 330px; max-height: 230px; object-fit: contain; margin: 0 auto; }
+  .down-arrow-guide { margin-top: 6px; }
+  .down-arrow-guide svg { width: 26px; height: 26px; }
+}
+@media (max-width: 768px) { .modal { padding: 14px; align-items: flex-start; } .modal-close { top: 8px; right: 8px; box-shadow: 0 4px 12px rgba(0,0,0,.15); } }
+</style>
+<div class="modal" id="regModal" role="dialog" aria-modal="true" aria-label="Đăng ký trải nghiệm">
+  <div class="modal-box">
+    <button type="button" class="modal-close" id="regClose" aria-label="Đóng">✕</button>
+    <div class="form-card-base">
+      <div class="form-card-top-bar"></div>
+      <div class="form-card-body">
+        <h2 class="form-card-title">ĐĂNG KÝ TRẢI NGHIỆM NGAY</h2>
+        <p class="form-card-subtitle">Nhận Demo toàn bộ tính năng phần mềm INPRO.vn</p>
+
+        <form class="signup-lead-form" id="popupLeadForm">
+          <div class="form-group-item">
+            <input type="text" name="name" required placeholder="Họ và tên *" class="form-input-control" autocomplete="name">
+          </div>
+          <div class="form-group-item">
+            <input type="tel" name="phone" required pattern="[0-9+ ]{9,13}" placeholder="Số điện thoại *" class="form-input-control" inputmode="tel" autocomplete="tel">
+          </div>
+          <div class="form-group-item">
+            <input type="email" name="email" required placeholder="Email *" class="form-input-control" inputmode="email" autocomplete="email">
+          </div>
+          <div class="form-group-item">
+            <select name="industry" required class="form-input-control form-select-control">
+              <option value="" disabled selected>Chọn ngành hàng kinh doanh *</option>
+              <option value="Mẹ và bé">Mẹ và bé</option>
+              <option value="FMCG / Hàng tiêu dùng">FMCG / Hàng tiêu dùng</option>
+              <option value="Thời trang">Thời trang</option>
+              <option value="Ngành hàng khác">Ngành hàng khác</option>
+            </select>
+          </div>
+          <div class="form-group-item">
+            <label class="form-label-small">Nhu cầu quan tâm * (Chọn 1 hoặc nhiều):</label>
+            <div class="needs-chips-grid">
+              <label class="needs-chip"><input type="checkbox" name="needs" value="Tư vấn tổng thể"><span>Tư vấn tổng thể</span></label>
+              <label class="needs-chip"><input type="checkbox" name="needs" value="Quản lý bán hàng đa kênh"><span>Quản lý bán hàng đa kênh</span></label>
+              <label class="needs-chip"><input type="checkbox" name="needs" value="Theo dõi chi phí và lợi nhuận"><span>Theo dõi chi phí và lợi nhuận</span></label>
+              <label class="needs-chip"><input type="checkbox" name="needs" value="Quản lý quảng cáo, KOC/Affiliate"><span>Quản lý quảng cáo, KOC/Affiliate</span></label>
+              <label class="needs-chip"><input type="checkbox" name="needs" value="Quản lý chăm sóc khách hàng"><span>Quản lý chăm sóc khách hàng</span></label>
+              <label class="needs-chip"><input type="checkbox" name="needs" value="Quản lý bán sỉ và đại lý"><span>Quản lý bán sỉ và đại lý</span></label>
+              <label class="needs-chip"><input type="checkbox" name="needs" value="Quản lý dữ liệu khách hàng"><span>Quản lý dữ liệu khách hàng</span></label>
+            </div>
+          </div>
+          <button type="submit" class="btn-orange-pill btn-form-submit"><span>HOÀN TẤT ĐĂNG KÝ ▶</span></button>
+          <p class="form-security-note">🔒 Thông tin được bảo mật 100% theo tiêu chuẩn an toàn.</p>
+        </form>
+
+        <div class="form-success-box">
+          <div class="form-success-icon">✓</div>
+          <h3 style="font-size:20px;color:var(--navy-dark);margin-bottom:6px">ĐĂNG KÝ THÀNH CÔNG!</h3>
+          <p style="font-size:14px;color:var(--text-mut)">Đội ngũ chuyên gia INPRO.vn sẽ liên hệ với bạn trong thời gian sớm nhất.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ============================================================
      GOOGLE APPS SCRIPT SUBMIT LOGIC
@@ -2073,7 +2197,7 @@ document.querySelectorAll('img').forEach(img => {
 // Thanh CTA cố định: tự ẩn ngay khi form đăng ký chạm vào màn hình để không che form
 (function () {
   const bar = document.querySelector('.mobile-sticky-footer');
-  const forms = document.querySelectorAll('.form-card-base');
+  const forms = document.querySelectorAll('.hero-right-form .form-card-base, .bottom-form-container .form-card-base');
   if (!bar || !forms.length || !('IntersectionObserver' in window)) return;
   const visible = new Set();
   const io = new IntersectionObserver(entries => {
@@ -2127,7 +2251,7 @@ document.querySelectorAll('form.signup-lead-form').forEach(form => {
       message: 'Ngành: ' + industry + ' | Nhu cầu: ' + (selectedNeeds.join(', ') || 'Chưa chọn cụ thể'),
       needs: selectedNeeds,
       utm: utm,
-      source_form: form.id === 'heroLeadForm' ? 'Form Đầu trang (Hero)' : 'Form Cuối trang (Bottom)',
+      source_form: form.id === 'heroLeadForm' ? 'Form Đầu trang (Hero)' : form.id === 'popupLeadForm' ? 'Form Popup (CTA)' : 'Form Cuối trang (Bottom)',
       device: (window.innerWidth <= 768 ? 'Mobile' : window.innerWidth <= 1024 ? 'Tablet' : 'Desktop') + ' (' + window.innerWidth + 'px)',
       page: window.location.href,
       ts: new Date().toISOString()
@@ -2161,6 +2285,26 @@ document.querySelectorAll('form.signup-lead-form').forEach(form => {
     });
   });
 });
+
+// Popup đăng ký: mọi nút CTA trỏ về form sẽ mở popup
+(function () {
+  const modal = document.getElementById('regModal');
+  if (!modal) return;
+  const open = () => {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    const i = modal.querySelector('input[name="name"]');
+    if (i) setTimeout(() => i.focus({ preventScroll: true }), 320);
+  };
+  const close = () => { modal.classList.remove('open'); document.body.style.overflow = ''; };
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href="#register-hero"], a[href="#register-bottom"]');
+    if (a) { e.preventDefault(); open(); }
+  });
+  document.getElementById('regClose').addEventListener('click', close);
+  modal.addEventListener('mousedown', e => { if (e.target === modal) close(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+})();
 </script>
 
 </body>
